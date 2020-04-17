@@ -29,6 +29,6 @@ use yii\widgets\ActiveForm;
  <?= $form->field($model, "password_repeat")->input("password") ?>   
 </div>
 
-<?= Html::submitButton("Register", ["class" => "btn btn-primary"]) ?>
+<?= Html::submitButton("Registrarme", ["class" => "btn btn-primary"]) ?>
 
 <?php $form->end() ?>
