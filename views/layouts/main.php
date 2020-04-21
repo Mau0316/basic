@@ -19,6 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -69,13 +70,17 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+<footer>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
+<img src="../img/hidalgo-01.svg" alt="" class="hidalgo">
+
+<div class="redes">
+    <p class="siguenos">Síguenos</p>
+</div>
+
+
 </footer>
+
 
 <?php $this->endBody() ?>
 </body>
