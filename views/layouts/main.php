@@ -76,11 +76,13 @@ AppAsset::register($this);
 
 <div class="redes">
     <p class="siguenos">Síguenos</p>
+    
+    <p>-------------------------</p>
+
 </div>
 
 
 </footer>
-
 
 <?php $this->endBody() ?>
 </body>
