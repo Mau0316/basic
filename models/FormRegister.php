@@ -22,8 +22,9 @@ class FormRegister extends model{
             ['email', 'match', 'pattern' => "/^.{5,80}$/", 'message' => 'Mínimo 5 y máximo 80 caracteres'],
             ['email', 'email', 'message' => 'Formato no válido'],
             ['email', 'email_existe'],
-            ['password', 'match', 'pattern' => "/^.{8,16}$/", 'message' => 'Mínimo 6 y máximo 16 caracteres'],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Los passwords no coinciden'],
+            /*['password', 'match', 'pattern' => "/^.{8,16}$/", 'message' => 'Mínimo 8 y máximo 16 caracteres'],*/
+            ['password', 'match', 'pattern' => "/^[a-z]+$/i", 'message' => 'Sólo se aceptan letras y números'],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Las contraseñas no coinciden'],
         ];
     }
     

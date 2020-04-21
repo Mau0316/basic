@@ -266,4 +266,8 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    public function actionExitoso()
+    {
+        return $this->render('exitoso');
+    }
 }

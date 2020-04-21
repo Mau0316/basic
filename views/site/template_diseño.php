@@ -87,8 +87,10 @@ $this->title = 'Usuario';
                         <br>
                         <input type="password" id="loginform-password" class="form-control" name="LoginForm[password]" value="" placeholder="Contraseña" aria-required="true">
                         <br>            
-                        <input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="0" checked="" ><label for="loginform-rememberme">CONFIRMO QUE HE LEÍDO, Y QUE ENTIENDO Y ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PRESENTE AVISO DE PRIVACIDAD.</label>                            
-                </div>                
+                        <input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="0" checked="" ><label for="loginform-rememberme">CONFIRMO QUE HE LEÍDO, Y QUE ENTIENDO Y ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PRESENTE AVISO DE PRIVACIDAD.</label>
+                        <br>
+                        <div class="col-lg-8"><p class="help-block help-block-error "></p></div>
+                    </div>
 
                     <div class="boton-login">
                         <div class="form-group">

@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 ]);
 ?>
 <div class="form-group">
- <?= $form->field($model, "username")->input("text")?>
+<?= $form->field($model, "username")->input("text")->label("Usuario")?>
 </div>
 
 <div class="form-group">
