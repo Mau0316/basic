@@ -12,6 +12,14 @@ $this->title = 'A Domicilio';
         <p class="lead">Sitio en mantenimiento</p>        
 
         <p><a class="btn btn-lg btn-success" href="#">Recargar</a></p>
+
+
+        
+                                                <a href="https://www.facebook.com" class="icon_bar icon_bar_facebook icon_bar_big" target="_blank"><span class="t"><i class="icon-facebook"></i></span><span class="b"><i class="icon-facebook"></i></span></a>
+                                                <a href="https://twitter.com" class="icon_bar icon_bar_twitter icon_bar_big" target="_blank"><span class="t"><i class="icon-twitter"></i></span><span class="b"><i class="icon-twitter"></i></span></a>
+                                                <a href="https://www.instagram.com" class="icon_bar icon_bar_linkedin icon_bar_big" target="_blank"><span class="t"><i class="icon-instagram"></i></span><span class="b"><i class="icon-instagram"></i></span></a>
+                                                <a href="https://api.whatsapp.com/send?phone=528671003349&text=Me%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%20" class="icon_bar icon_bar_whatsapp icon_bar_big" target="_blank"><span class="t"><i class="fa fa-whatsapp"></i></span><span class="b"><i class="fa fa-whatsapp"></i></span></a>
+                                            
     </div>
 
     <div class="body-content">    

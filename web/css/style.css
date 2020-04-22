@@ -3,8 +3,7 @@ body{
 }
 
 .padre{
-    text-align: center;
-    background:  #f5f5f5;
+    text-align: center;    
 }
 .divs{
     display: inline-block; 
@@ -13,26 +12,31 @@ body{
 }
 #izquierda{
     width: 30%;
-    height: 500px;
+    height:auto!important;
     border-radius: 5px;
-    margin: 50px 45px 45px 0px;
+    margin: 30px 45px 45px 0px;
     background:  #ffffff;
     vertical-align: middle;
 }
 #derecha{
-    width: 30%;
-    height: 500px;
+    width: 30%;    
+    height:auto!important;
     border-radius: 5px;
-    margin: 50px 0px 45px 45px;
+    margin: 30px 0px 45px 45px;
     background:  #fff;
     vertical-align: middle;
+    
 }
 .inputs{
     margin: 0px 20px 0px 20px;
 }
 
+.input-derecha{
+    margin: 22px 20px 0px 20px;
+}
+
 .form-group{
-    margin-top: 3%;;
+    margin-top: 3%;
 }
 
 .boton-login{
@@ -48,30 +52,51 @@ p.a{
     color: green;
 }
 
-p.siguenos{
+p.informacion{
     color: white;    
+    font-weight: bold;
+    font-size: 20px;
 }
 p.lineas{
-    color: white;
+    color: #76b227;
 }
 
 h1.negrita{
     font-weight: bold;
 }
 
-Footer {
-    background-color: #083141;
-    width: 100%;
-    height: 50%;
+h1.titulo{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
 }
 
+Footer {
+    background-color: #083141;
+    width: 100%;    
+    height: auto;
+
+}
+
+.redes{
+    font-weight: bolder;  
+    margin: -15% 0 0 400px;
+}
+
+
+
+/* Css Imagenes*/
 .hidalgo{
     width: 200px;
     height: 200px;
     margin: 80px 0px 0px 100px;
 }
 
-.redes{
-    font-weight: 900;  
-    margin: -15% 0 0 400px;  
+.escudo{
+    display:flex;
+    margin:auto;
+    width: 200px;
+    height: 200px;
+    margin-top: -150px;
+ 
 }

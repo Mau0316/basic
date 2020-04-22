@@ -19,7 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/style.css">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -72,14 +72,23 @@ AppAsset::register($this);
 
 <footer>
 
-<img src="../img/hidalgo-01.svg" alt="" class="hidalgo">
+    <img src="../img/hidalgo-01.svg" alt="" class="hidalgo">
 
-<div class="redes">
-    <p class="siguenos">Síguenos</p>
+    <div class="redes">
+        <p class="informacion">Síguenos</p>
+        <p class="lineas">- - - - - - - - - - - - - - - - - - - - - - - - -</p>    
+        <a href="http://facebook.com" target="blank"><img src="../img/facebook.svg" alt="" width="25px"></a>
+        <br><br>    
+        <a href="https://api.whatsapp.com/send?phone=+527713430047" target="blank"><img src="../img/whatsapp.svg" alt="" width="25px"></a>
+        <br><br>
+        <a href="https://twitter.com/gobiernohidalgo" target="blank"><img src="../img/twitter.svg" alt="" width="25px"></a>
+        <br><br>
+        <a href="https://www.instagram.com/omarfayadmeneses/?hl=es-la" target="blank"><img src="../img/instagram.svg" alt="" width="25px"></a>
+        <br><br>        
+    </div>
+
+    <img src="../img/escudo.png" alt="" class="escudo">
     
-    <p>-------------------------</p>
-
-</div>
 
 
 </footer>

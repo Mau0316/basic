@@ -266,8 +266,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-    public function actionExitoso()
+    public function actionRegistrorepartidor()
     {
-        return $this->render('exitoso');
+        $us = $_POST['user'];
+        $pass = $_POST['pass'];
+        echo  $us.$pass;
     }
 }
