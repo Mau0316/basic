@@ -2,6 +2,10 @@ body{
     background-color: #f5f5f5;
 }
 
+
+
+
+/*Divs */
 .padre{
     text-align: center;    
 }
@@ -46,8 +50,13 @@ body{
     margin-top: 20px;
 }
 
+/*--------------------------------*/
+
+
+
+/*Parrafos y titulos*/
 p.a{
-    margin-left: 20px;    
+    margin-left: 10px;    
     text-align: left;
     color: green;
 }
@@ -55,10 +64,15 @@ p.a{
 p.informacion{
     color: white;    
     font-weight: bold;
-    font-size: 20px;
+    font-size: 10px;
 }
 p.lineas{
-    color: #76b227;
+    color: #76b227;    
+}
+p.contacto{
+    color: white;     
+    width: 100%;
+    font-size: 10px;
 }
 
 h1.negrita{
@@ -70,33 +84,56 @@ h1.titulo{
     text-align: center;
     font-size: 30px;
 }
+/*--------------------------------*/
 
-Footer {
+
+
+
+/* Css Footer*/
+.father{  
     background-color: #083141;
-    width: 100%;    
+    width: 100%;
+    height: auto;            
+    text-align: center;    
+    padding: 20px 0 20px 0;
+    
+}
+
+.hidalgo{       
+    width: 24%;
+    display: inline-block;  
+    vertical-align: middle;
+
+}
+
+.redes{    
+    display: inline-block;
+    text-align: left;
+    font-weight: bolder;      
+    flex-direction: column;
+    width: 25%;
     height: auto;
-
-}
-
-.redes{
-    font-weight: bolder;  
-    margin: -15% 0 0 400px;
-}
-
-
-
-/* Css Imagenes*/
-.hidalgo{
-    width: 200px;
-    height: 200px;
-    margin: 80px 0px 0px 100px;
+    vertical-align: top;
 }
 
 .escudo{
-    display:flex;
-    margin:auto;
-    width: 200px;
-    height: 200px;
-    margin-top: -150px;
- 
+    display: inline-block;
+    text-align: left;  
+    width: 25%;
+    height: auto;        
+    justify-content: center;  
+    vertical-align: top;  
 }
+
+.escudo img{
+    width: 40%;
+}
+
+.contacto{
+    display: inline-block;
+    text-align: left;
+    width: 25%;
+    height: auto;       
+    vertical-align: top;         
+}
+/*--------------------------------*/
