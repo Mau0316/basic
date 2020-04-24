@@ -212,6 +212,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -266,10 +267,62 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-    public function actionRegistrorepartidor()
+    public function actionRegistrorepartidor($user=null,$correo=null)
     {
         $us = $_POST['user'];
-        $pass = $_POST['pass'];
-        echo  $us.$pass;
+        $correo = $_POST['email'];
+        return $this->render('registro', ['user' => $user,'email' => $correo]);
     }
+
+    public function actionRegistro()
+    {
+        
+        $nombre = $_POST['nombre'];
+        $paterno = $_POST['paterno'];
+        $materno = $_POST['materno'];
+        $vehiculo = $_POST['vehiculo'];
+        $curp = $_POST['curp'];
+        $tel_concesionario = $_POST['tel_concesionario'];
+        $tel_envios = $_POST['tel_envios'];
+        $direccion = $_POST['direccion'];
+        $localidad = $_POST['localidad'];
+        $num = $_POST['num'];
+        $placas = $_POST['placas'];
+        $marca = $_POST['marca'];
+        $modelo = $_POST['modelo'];
+        $serie = $_POST['serie'];
+        $conductores = $_POST ['conductores'];
+        $celular = $_POST ['celular'];
+        $horario = $_POST['horario'];
+        $ine = $_POST ['ine'];
+        $email = $_POST['email'];
+        $pago = $_POST['pago'];
+        
+
+        Yii::$app->db->createCommand()->insert('aspirantes', [
+            'nombre' => $nombre,
+            'paterno' => $paterno,
+            'materno' => $materno,
+            'vehiculo' => $vehiculo,
+            'curp' => $curp,
+            'tel_concesionario' => $tel_concesionario,
+            'tel_envios' => $tel_envios,
+            'direccion' => $direccion,
+            'localidad' => $localidad,
+            'num' => $num,
+            'placas' => $placas,
+            'marca' => $marca,
+            'modelo' => $modelo,
+            'serie' => $serie,
+            'conductores' => $conductores,
+            'celular' => $celular,
+            'horario' => $horario,
+            'ine' => $ine,
+            'email' => $email,
+            'pago' => $pago,
+            ])->execute();
+            return $this->redirect(["site/login"]);
+        //return $this -> render('registro');
+    }
+    
 }

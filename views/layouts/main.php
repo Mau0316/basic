@@ -19,11 +19,60 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/style.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
+
+<header>
+
+    <div class="navegacion">
+
+        <div class="imagenes">
+
+            <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/escudo-01.svg" alt="Operativo Escudo">                
+            <p class="domicilio" >a domicilio </p>
+            <p class="hgo"> hidalgo</p>     
+            
+        </div>
+             
+        <div class="opciones">
+
+            <div class="input-group-btn">            
+            <input type="text" placeholder="Buscar">
+                <button class="btn btn-primary" type="submit" id="buscar">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div> 
+            <a href="#" id="repartir">QUIERO REPARTIR</a>         
+            <a href="#" id="vender"> QUIERO VENDER</a>             
+
+        </div> 
+
+    </div>            
+
+    <!--Etiqueta nav sirve para navegación-->
+    <nav>        
+        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php">INICIO</a>
+        <a href="#">¿QUÉ ES?</a>
+        <a href="#">¿CÓMO FUNCIONA?</a>
+        <a href="#">PREGUNTAS FRECUENTES</a>
+        <a href="#">RECOMENDACIONES</a>        
+        <?php echo Yii::$app->user->isGuest ? (
+            "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flogin'>ENTRAR</a>"
+            ) : (
+                '<form action="'. Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flogout" method="post">
+                    <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
+                    <button id="close_session">SALIR</button>
+                </form>'
+            )
+        ?>             
+    </nav>
+
+</header>
 
 
 
@@ -45,7 +94,7 @@ AppAsset::register($this);
     
             <div class="hidalgo">
 
-                <img src="../img/hidalgo-01.svg" alt="" style="width: 40%;">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/hidalgo-01.svg" alt="" style="width: 40%;">
 
             </div>
 
@@ -53,18 +102,18 @@ AppAsset::register($this);
                 <p class="informacion">Síguenos</p>
                 <p class="lineas">- - - - - - - - - - - - - - - - - - - - - - - - -</p>
                 
-                <a href="http://facebook.com" target="blank"><img src="../img/facebook.svg" alt="" width="25px"></a>
-                <br>
-                <a href="https://api.whatsapp.com/send?phone=+527713430047" target="blank"><img src="../img/whatsapp.svg" alt="" width="25px"></a>
-                <br>
-                <a href="https://twitter.com/gobiernohidalgo" target="blank"><img src="../img/twitter.svg" alt="" width="25px"></a>
-                <br>
-                <a href="https://www.instagram.com/omarfayadmeneses/?hl=es-la" target="blank"><img src="../img/instagram.svg" alt="" width="25px"></a>
+                <a href="http://facebook.com" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/facebook.svg" alt="" width="25px"></a>
+                <br><br>
+                <a href="https://api.whatsapp.com/send?phone=+527713430047" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/whatsapp.svg" alt="" width="25px"></a>
+                <br><br>
+                <a href="https://twitter.com/gobiernohidalgo" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/twitter.svg" alt="" width="25px"></a>
+                <br><br>
+                <a href="https://www.instagram.com/omarfayadmeneses/?hl=es-la" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/instagram.svg" alt="" width="25px"></a>
                 
             </div>
         
             <div class="escudo">
-                <img src="../img/escudo.png" alt="">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/escudo.png" alt="">
             </div>
                 
             <div class="contacto">

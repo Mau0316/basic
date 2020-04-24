@@ -1,0 +1,86 @@
+body{
+    background-color: #e6e6e6;
+}
+
+/*Divs*/
+
+.pasos{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+.pasos img{
+    width: 200px;
+    height: 200px;
+    margin: 5px 0 5px 0;
+}
+
+.categorias{
+    background-color: white;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    height: auto;    
+}
+
+.categorias img{
+    width: 200px;
+    height: 200px;
+    margin: 10px -5px 20px -5px;
+}
+
+.economia{
+    background-color: #46c1ee;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    height: auto;    
+}
+
+.economia img{
+    width: 200px;
+    height: 200px;
+    margin: 20px -5px 10px -5px;
+}
+
+.preguntas{
+    background-color: #e6e6e6;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;        
+    width: 100%;
+    height: auto;
+    padding-left: 50px;
+}
+
+.preguntas img{
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    margin: 10px 0 10px 0;
+}
+
+.preguntas a{
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900;    
+}
+
+/*id*/
+#susana{
+    margin-top: -30px;
+} 
+
+
+/* Titulos y parrrafos*/
+h1.title{
+    font-weight: 900;
+    color: #76b227;
+    text-align: center;
+}
