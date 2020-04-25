@@ -1,0 +1,41 @@
+#busqueda{
+	-webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+#busqueda:focus{
+	width: 100%;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+#dato{
+    display: none;
+}
+
+button {
+ border: none;
+ background: #3a7999;
+ color: #f2f2f2;
+ padding: 8px;
+ font-size: 12px;
+ border-radius: 5px;
+ box-sizing: border-box;
+ transition: all 500ms ease;
+}
+button:hover {
+ background: rgba(0,0,0,0);
+ color: #3a7999;
+ box-shadow: inset 0 0 0 3px #3a7999;
+}
