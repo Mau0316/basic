@@ -98,7 +98,7 @@ function valid2() {
 
                 <div class="form-div">
 
-                    <b><p class="a">Cuento con usuario y contraseña</p></b>
+                    <b><p class="a">Cuento con Usuario y contraseña</p></b>
                     <h1 class="negrita">USUARIO</h1>
                     <br>
 
