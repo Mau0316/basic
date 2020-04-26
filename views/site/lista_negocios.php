@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
-$this->title = 'Lista de registros';
+$this->title = 'Lista de negocios';
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/lista.css">  
@@ -26,37 +26,38 @@ if (Yii::$app->user->isGuest) {
 </select>
 <button type="submit" name="buscar" id="buscar">Buscar</button><br>
 </form>
-<h1>Lista de registros</h1>
+<h1>Lista de negocios</h1>
 <div id="contenedor1">
 <table id="tabla">
 		<tr>
 		    <th>Id</th>
-		    <th>Nombre</th>
-		    <th>Apellido Paterno</th>
-		    <th>Apellido Materno</th>
-		    <th>Email</th>
+		    <th>Nombre Comercio</th>
+		    <th>Nombre del Titular</th>
+		    <th>Correo</th>
 		    <th>Dirección</th>
-		    <th>Teléfono Concesionario</th>
+		    <th>Giro</th>
+		    <th>Búsqueda</th>
             <th>Celular</th>
-            <th>Vehículo</th>		    
+            <th>Validación</th>
             <th>Modificar</th>
+            
   		</tr>
 <?php
-    foreach ($aspirantes as $aspirante):?>
+    foreach ($negocios as $negocio):?>
 	  	<tr>
-        <th><?= Html::encode("{$aspirante->id}") ?></th>
-        <th><?= Html::encode("{$aspirante->nombre}") ?></th>
-        <th><?= Html::encode("{$aspirante->paterno}") ?></th>
-        <th><?= Html::encode("{$aspirante->materno}") ?></th>
-        <th><?= Html::encode("{$aspirante->email}") ?></th>
-        <th><?= Html::encode("{$aspirante->direccion}") ?></th>
-        <th><?= Html::encode("{$aspirante->tel_concesionario}") ?></th>
-        <th><?= Html::encode("{$aspirante->celular}") ?></th>
-        <th><?= Html::encode("{$aspirante->vehiculo}") ?></th>
-            <form method="post" action="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Fmodificar">
+        <th><?= Html::encode("{$negocio->id}") ?></th>
+        <th><?= Html::encode("{$negocio->nombre_comercio}") ?></th>
+        <th><?= Html::encode("{$negocio->nombre_titular}") ?></th>
+        <th><?= Html::encode("{$negocio->email}") ?></th>
+        <th><?= Html::encode("{$negocio->direccion}") ?></th>
+        <th><?= Html::encode("{$negocio->giro}") ?></th>
+        <th><?= Html::encode("{$negocio->busqueda}") ?></th>
+        <th><?= Html::encode("{$negocio->celular}") ?></th>
+        <th><?= Html::encode("{$negocio->validacion}") ?></th>
+            <form method="post" action="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Fmodificarnegocio">
             <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-            <input type="text" id="dato" name="id" value="<?php echo $aspirante->id ?>">
-            <th><button type="submit" class="btn" name="modificar">Modificar</button></th>
+            <input type="text" id="dato" name="id" value="<?php echo $negocio->id ?>">
+            <th><button type="submit" class="btn" name="modificarnegocio">Modificar</button></th>
 			</form>
 		</tr>
 <?php endforeach; ?>

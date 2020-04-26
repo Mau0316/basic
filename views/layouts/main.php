@@ -56,11 +56,12 @@ AppAsset::register($this);
 
     <!--Etiqueta nav sirve para navegación-->
     <nav>        
-        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php">INICIO</a>
+        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Flogin">INICIO</a>
         <a href="#">¿QUÉ ES?</a>
         <a href="#">¿CÓMO FUNCIONA?</a>
-        <a href="#">PREGUNTAS FRECUENTES</a>
-        <a href="#">RECOMENDACIONES</a>        
+        <a href="#">PREGUNTAS FRECUENTES</a>        
+        <a href="#">RECOMENDACIONES</a>
+        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginnegocios">LOGIN NEGOCIOS</a>
         <?php echo Yii::$app->user->isGuest ? (
             "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flogin'>ENTRAR</a>"
             ) : (

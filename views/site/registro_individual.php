@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Lista';
+$this->title = 'Actualización de registro';
 $id = $_REQUEST['id'];
 
 ?>

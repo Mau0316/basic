@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Aspirantes;
+use app\models\Negocios;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -230,6 +231,11 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionLoginnegocios()
+    {
+        return $this->render('login_negocio');
+    }
+
     /**
      * Logout action.
      *
@@ -270,9 +276,52 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionNegocios(){
-        return $this ->render('negocios');
+    public function actionRegistronegocio($user=null,$correo=null)
+    {
+        $us = $_POST['user'];
+        $correo = $_POST['email'];
+        return $this->render('negocios', ['user' => $user,'email' => $correo]);
+    }
 
+    public function actionNegocios(){
+        $nombre_comercio = $_POST['nombre_comercio'];
+        $giro = $_POST['giro'];
+        $nombre_titular = $_POST['nombre_titular'];
+        $email = $_POST['email'];
+        $celular = $_POST['celular'];
+        $rfc = $_POST['rfc'];
+        $curp = $_POST['curp'];
+        $busqueda = $_POST['busqueda'];
+        $direccion = $_POST['direccion'];
+        $numero = $_POST['numero'];
+        $colonia = $_POST['colonia'];
+        $tarjeta = $_POST['tarjeta'];
+        $factura = $_POST['factura'];
+        $validacion = $_POST['validacion'];
+           
+        $res = Yii::$app->db->createCommand()->insert('negocios', [
+            'nombre_comercio' => $nombre_comercio,
+            'giro' => $giro,
+            'nombre_titular' => $nombre_titular,
+            'email' => $email,
+            'celular' => $celular,
+            'rfc' => $rfc,
+            'curp' => $curp,
+            'busqueda' => $busqueda,
+            'direccion' => $direccion,
+            'numero' => $numero,
+            'colonia' => $colonia,
+            'tarjeta' => $tarjeta,
+            'factura' => $factura,
+            'validacion' => $validacion,           
+            ])->execute();
+            if($res){
+                return true;
+            }
+            else{
+                return false;
+            }
+            
     }
 
     public function actionRegistrorepartidor($user=null,$correo=null)
@@ -283,8 +332,7 @@ class SiteController extends Controller
     }
 
     public function actionRegistro()
-    {
-        
+    {        
         $nombre = $_POST['nombre'];
         $paterno = $_POST['paterno'];
         $materno = $_POST['materno'];
@@ -338,8 +386,14 @@ class SiteController extends Controller
     }
 
     public function actionRegistroindividual($id=null){
-        return $this->render('registro_individual');       
+        return $this->render('registro_individual');
     }
+
+    public function actionNegocioindividual($id=null){
+        return $this->render('negocio_individual');
+    }
+
+
 
     public function actionLista(){
         $query = aspirantes::find();
@@ -360,6 +414,25 @@ class SiteController extends Controller
       ]);
     }
 
+    public function actionListanegocios(){
+        $query = negocios::find();
+
+      $pagination = new Pagination([
+        'defaultPageSize' => 10,
+        'totalCount' => $query->count(),
+        ]);
+
+      $negocios = $query->orderBy('id')
+      ->offset($pagination->offset)
+      ->limit($pagination->limit)
+      ->all();
+
+      return $this->render('lista_negocios',[
+        'negocios' => $negocios,
+        'pagination' => $pagination,
+      ]);
+    }
+
     public function actionModificar(){
 
         if (isset($_POST['modificar'])) {
@@ -370,6 +443,18 @@ class SiteController extends Controller
         }
 
     }
+
+    public function actionModificarnegocio(){
+
+        if (isset($_POST['modificarnegocio'])) {
+            $id= $_POST['id'];
+        //$usuario=Yii::$app->user->identity->nombre; //Nombre del usuario logeado    
+        Yii::$app->controller->redirect(['negocioindividual', 'id'=> $id]);
+        //$r=Yii::$app->user->identity->rol;                
+        }
+
+    }
+
 
     public function actionActualizar(){
             $id = $_POST['id'];
@@ -417,5 +502,45 @@ class SiteController extends Controller
                 return $this->redirect(["site/lista"]);
                            
     }
+
+    public function actionActualizarnegocio(){
+        $id = $_POST['id'];
+        $nombre_comercio = $_POST['nombre_comercio'];
+        $giro = $_POST['giro'];
+        $nombre_titular = $_POST['nombre_titular'];
+        $email = $_POST['email'];
+        $celular = $_POST['celular'];
+        $rfc = $_POST['rfc'];
+        $curp = $_POST['curp'];
+        $busqueda = $_POST['busqueda'];
+        $direccion = $_POST['direccion'];
+        $numero = $_POST['numero'];
+        $colonia = $_POST['colonia'];
+        $tarjeta = $_POST['tarjeta'];
+        $factura = $_POST['factura'];
+        $validacion = $_POST['validacion'];        
+        $contra = $_POST['contra'];
+        $authKey = $this->randKey("abcdef0123456789", 200);
+        $accessToken = $this->randKey("abcdef0123456789", 200);
+        $activate = 1;
+        $contra='0';            
+        $contra = crypt($contra, Yii::$app->params["salt"]);
+        $params=[":id"=>$id, ":nombre_comercio"=>$nombre_comercio, ":giro"=>$giro, ":nombre_titular"=>$nombre_titular,
+                ":email"=>$email, ":celular"=>$celular, ":rfc"=>$rfc,
+                ":curp"=>$curp, ":busqueda"=>$busqueda, ":direccion"=>$direccion,
+                ":numero"=>$numero, ":colonia"=>$colonia, ":tarjeta"=>$tarjeta, ":factura"=>$factura, ":validacion"=>$validacion,
+                ":contra"=>$contra, ":authKey"=>$authKey, ":accessToken"=>$accessToken,
+                ":activate"=>$activate        
+            ];
+        
+        $sel = Yii::$app->db->createCommand(
+            'UPDATE negocios SET nombre_comercio=:nombre_comercio, giro=:giro, nombre_titular=:nombre_titular, email=:email,
+            celular=:celular, rfc=:rfc, curp=:curp, busqueda=:busqueda,
+            direccion=:direccion, numero=:numero, colonia=:colonia, tarjeta=:tarjeta, factura=:factura, validacion=:validacion,
+            contra=:contra, authKey=:authKey, accessToken=:accessToken, activate=:activate WHERE id=:id',$params)->execute();
+            return $this->redirect(["site/listanegocios"]);
+                       
+}
+
     
 }

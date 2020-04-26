@@ -36,7 +36,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     
     /* Busca la identidad del usuario a través de su token de acceso */
     public static function findIdentityByAccessToken($token, $type = null)
-    {
+    {        
         
         $users = Users::find()
                 ->where("activate=:activate", [":activate" => 1])
