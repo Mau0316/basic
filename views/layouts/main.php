@@ -62,8 +62,9 @@ AppAsset::register($this);
         <a href="#">PREGUNTAS FRECUENTES</a>        
         <a href="#">RECOMENDACIONES</a>
         <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginnegocios">LOGIN NEGOCIOS</a>
+        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginusuarios">LOGIN USUARIOS</a>
         <?php echo Yii::$app->user->isGuest ? (
-            "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flogin'>ENTRAR</a>"
+            "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flogin'>LOGIN DE REPARTO</a>"
             ) : (
                 '<form action="'. Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flogout" method="post">
                     <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">

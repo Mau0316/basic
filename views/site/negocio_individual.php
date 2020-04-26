@@ -72,7 +72,8 @@ $id = $_REQUEST['id'];
                     </div>       
                     <div class="datos1">
                         <P>CONTRASEÑA</P>                        
-                        <input type="password" class="form-control" name="contra" autofocus="" placeholder="Contraseña" aria-required="true" aria-invalid="true" required="true" autocomplete="false" ></div>                             
+                        <input type="password" class="form-control" name="contra" autofocus="" placeholder="Contraseña" aria-required="true" aria-invalid="true" required="true" autocomplete="false" >
+                    </div>
                     <br><br><br>
                    
                     <div class="datos2">

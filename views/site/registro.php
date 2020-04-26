@@ -88,8 +88,7 @@ function mensaje(){
                         document.getElementById("curp").value = "";
                         document.getElementById("tel_concesionario").value = "";
                         document.getElementById("tel_envios").value = "";
-                        document.getElementById("direccion").value = "";
-                        document.getElementById("direccion").value = "";
+                        document.getElementById("direccion").value = "";                        
                         document.getElementById("localidad").value = "";
                         document.getElementById("num").value = "";
                         document.getElementById("placas").value = "";

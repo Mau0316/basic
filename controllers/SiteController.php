@@ -14,6 +14,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Aspirantes;
 use app\models\Negocios;
+use app\models\Usuarios;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -236,6 +237,11 @@ class SiteController extends Controller
         return $this->render('login_negocio');
     }
 
+    public function actionLoginusuarios()
+    {
+        return $this -> render('login_usuarios');
+    }
+
     /**
      * Logout action.
      *
@@ -324,6 +330,51 @@ class SiteController extends Controller
             
     }
 
+    public function actionRegistrousuario($user=null, $correo=null)
+    {
+        $us = $_POST['user'];
+        $correo = $_POST ['email'];
+        return $this->render('usuarios', ['user' => $user,'email' => $correo]);
+    }
+
+    public function actionUsuarios()
+    {
+        $nombre_usuario = $_POST['nombre_usuario'];
+        $a_paterno = $_POST['a_paterno'];
+        $a_materno = $_POST['a_materno'];
+        $celular = $_POST['celular'];
+        $email = $_POST['email'];
+        $direccion = $_POST['direccion'];
+        $numero = $_POST['numero'];
+        $colonia = $_POST['colonia'];
+        $municipio = $_POST['municipio'];
+        $c_postal = $_POST['c_postal'];
+        $ref_domicilio = $_POST['ref_domicilio'];
+
+        $res = Yii::$app->db->createCommand()->insert('usuarios', [
+            'nombre_usuario' => $nombre_usuario,
+            'a_paterno' => $a_paterno,
+            'a_materno' => $a_materno,
+            'celular' => $celular,
+            'email' => $email,
+            'direccion' => $direccion,
+            'numero' => $numero,
+            'colonia' => $colonia,
+            'municipio' => $municipio,
+            'c_postal' => $c_postal,
+            'ref_domicilio' => $ref_domicilio,            
+            ])->execute();
+            if($res){
+                return true;
+            }
+            else{
+                return false;
+            }
+        
+    }
+
+
+
     public function actionRegistrorepartidor($user=null,$correo=null)
     {
         $us = $_POST['user'];
@@ -393,6 +444,11 @@ class SiteController extends Controller
         return $this->render('negocio_individual');
     }
 
+    public function actionUsuarioindividual($id=null)
+    {
+        return $this->render('usuario_individual');
+    }
+
 
 
     public function actionLista(){
@@ -433,6 +489,27 @@ class SiteController extends Controller
       ]);
     }
 
+    public function actionListausuarios(){
+        $query = usuarios::find();
+
+      $pagination = new Pagination([
+        'defaultPageSize' => 10,
+        'totalCount' => $query->count(),
+        ]);
+
+      $negocios = $query->orderBy('id')
+      ->offset($pagination->offset)
+      ->limit($pagination->limit)
+      ->all();
+
+      return $this->render('lista_usuarios',[
+        'usuarios' => $negocios,
+        'pagination' => $pagination,
+      ]);
+    }
+
+
+
     public function actionModificar(){
 
         if (isset($_POST['modificar'])) {
@@ -450,6 +527,17 @@ class SiteController extends Controller
             $id= $_POST['id'];
         //$usuario=Yii::$app->user->identity->nombre; //Nombre del usuario logeado    
         Yii::$app->controller->redirect(['negocioindividual', 'id'=> $id]);
+        //$r=Yii::$app->user->identity->rol;                
+        }
+
+    }
+
+    public function actionModificarusuario(){
+
+        if (isset($_POST['modificarusuario'])) {
+            $id= $_POST['id'];
+        //$usuario=Yii::$app->user->identity->nombre; //Nombre del usuario logeado    
+        Yii::$app->controller->redirect(['usuarioindividual', 'id'=> $id]);
         //$r=Yii::$app->user->identity->rol;                
         }
 
@@ -540,7 +628,44 @@ class SiteController extends Controller
             contra=:contra, authKey=:authKey, accessToken=:accessToken, activate=:activate WHERE id=:id',$params)->execute();
             return $this->redirect(["site/listanegocios"]);
                        
-}
+        }
+
+
+        public function actionActualizarusuario(){
+            $id = $_POST['id'];
+            $nombre_usuario = $_POST['nombre_usuario'];
+            $a_paterno = $_POST['a_paterno'];
+            $a_materno = $_POST['a_materno'];
+            $celular = $_POST['celular'];
+            $email = $_POST['email'];
+            $direccion = $_POST['direccion'];
+            $numero = $_POST['numero'];
+            $colonia = $_POST['colonia'];
+            $municipio = $_POST['municipio'];
+            $c_postal = $_POST['c_postal'];
+            $ref_domicilio = $_POST['ref_domicilio'];                   
+            $contra = $_POST['contra'];
+            $authKey = $this->randKey("abcdef0123456789", 200);
+            $accessToken = $this->randKey("abcdef0123456789", 200);
+            $activate = 1;
+            $contra='0';            
+            $contra = crypt($contra, Yii::$app->params["salt"]);
+            $params=[":id"=>$id, ":nombre_usuario"=>$nombre_usuario, ":a_paterno"=>$a_paterno, ":a_materno"=>$a_materno,
+                    ":celular"=>$celular, ":email"=>$email, ":direccion"=>$direccion,
+                    ":numero"=>$numero, ":colonia"=>$colonia, ":municipio"=>$municipio,
+                    ":c_postal"=>$c_postal, ":ref_domicilio"=>$ref_domicilio,
+                    ":contra"=>$contra, ":authKey"=>$authKey, ":accessToken"=>$accessToken,
+                    ":activate"=>$activate        
+                ];
+            
+            $sel = Yii::$app->db->createCommand(
+                'UPDATE usuarios SET nombre_usuario=:nombre_usuario, a_paterno=:a_paterno, a_materno=:a_materno, celular=:celular,
+                email=:email, direccion=:direccion, numero=:numero, colonia=:colonia,
+                municipio=:municipio, c_postal=:c_postal, ref_domicilio=:ref_domicilio,
+                contra=:contra, authKey=:authKey, accessToken=:accessToken, activate=:activate WHERE id=:id',$params)->execute();
+                return $this->redirect(["site/listausuarios"]);
+                           
+    }
 
     
 }

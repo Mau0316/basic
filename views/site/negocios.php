@@ -119,7 +119,7 @@ function mensaje(){
 <p style="color:#76b227; font-weight:900; text-align:center; font-size:20px">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>
 
 <div class="cuadro">        
-        <form action="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Fnegocios" method="post">
+        
             <div class="inputs">                
                     <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
                     <div class="datos1">
@@ -186,7 +186,7 @@ function mensaje(){
                     </div>
                     <div class="datos5">
                         <p>¿FACTURA? SI/NO</p>
-                        <input type="text" class="form-control" id="factura" autofocus="" placeholder="Palabras Clave de búsqueda" aria-required="true" aria-invalid="true" required="true" autocomplete="false">                        
+                        <input type="text" class="form-control" id="factura" autofocus="" placeholder="Palabras Clave de búsqueda" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
                     </div>
                     <br><br><br>
 
@@ -210,7 +210,7 @@ function mensaje(){
                     </div>
             </div>
 
-            </form>
+            
 
         
         
