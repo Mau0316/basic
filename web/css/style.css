@@ -257,4 +257,16 @@ h1.titulo{
     height: auto;       
     vertical-align: top;         
 }
+
+.messenger{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    width: 25%;
+                
+}
+
+.messenger img{
+    width: 25%;
+}
 /*--------------------------------*/

@@ -473,9 +473,8 @@ class SiteController extends Controller
         return $this->render('usuario_individual');
     }
 
-
-
     public function actionLista(){
+        
         $query = aspirantes::find();
 
       $pagination = new Pagination([

@@ -19,6 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/escudo-01.svg" type="image/png">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/style.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?php $this->registerCsrfMetaTags() ?>
@@ -71,6 +72,14 @@ AppAsset::register($this);
                 '<a href="'.Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flistageneral">LISTA</a>'
             )
         ?>
+
+        <!-- Repartidor:  Salir y lista y su propia vista-->
+
+        <!-- Negocios:  Salir, lista para pedidos -->
+
+        <!-- Usuarios:  Salir y lista de pedidos realizados-->
+
+        <!-- Mesa de control: Listas modificar -->
     </nav>
 
 </header>
@@ -127,6 +136,10 @@ AppAsset::register($this);
                 <a href="mailto:webhgo@hidalgo.gob.mx" target="blank">webhgo@hidalgo.gob.mx</a> <br>
                 <a href="#">Aviso de privacidad</a> <br>
             </div>
+
+            <div class="messenger">
+                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/messenger.svg" alt="">
+            </div>
         
     </div>
     
@@ -135,3 +148,4 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+
