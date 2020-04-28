@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Entrar';
+$this->title = 'Registro Negocios';
 
 
 ?>
@@ -80,8 +80,49 @@ function valid2() {
                 <br>
             </form>        
         </div>
+        
+        <div class="divs" id="derecha">
+            
+                <?php $form = ActiveForm::begin([
+                    'id' => 'login-form',
+                    'layout' => 'horizontal',
+                    'options' => [
+                        'onsubmit' => 'return valid2()'
+                    ],
+                    'fieldConfig' => [
+                    'template' => "{label}\n<div>{input}</div>\n\n<div>{error}</div>",
+                    'labelOptions' => ['class' => 'col-lg-1 control-label'],
+                    ],
+                ]); ?>
 
+                <div class="form-div">
 
+                    <b><p class="a">Cuento con Usuario y contraseña</p></b>
+                    <h1 class="negrita">USUARIO</h1>
+                    <br>
+
+                        <div class="inputs">
+                                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'Placeholder'=>'Correo electrónico'])->label("")?>
+                                <?= $form->field($model, 'password')->passwordInput(['Placeholder'=>'Contraseña']) ->label("") ?>
+                                <input type="checkbox" name="acepto_chk" id="acepto_chk2"  /><p><b>CONFIRMO QUE HE LEÍDO, Y QUE ENTIENDO Y ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PRESENTE AVISO DE PRIVACIDAD</b></p>
+                        </div>
+
+                        <div class="boton-login">
+                            <div class="form-group">
+                                <div class="col-lg-offset-1 col-lg-11">                                
+                                    <br><button  class='btn btn-success btn-block' >Actualizar Solicitud</button>
+                                </div>
+                            </div>
+                        </div>
+                        <b>
+                        <p>¿Olvidaste tu contraseña? Contáctanos: <br> <a href="tel:+527717176000"> +52 (771) 71 76000</a></p>
+                        <a href="mailto:email@echoecho.com" target="blank">escudo@hidalgo.gob.mx</a>
+                        <p>Dirección general de Promoción a <br> emprendedores y MIPyMES</p>
+                        </b>
+                </div>
+                
+                <?php ActiveForm::end(); ?>
+        </div>
 
     </div>
 </body>

@@ -32,12 +32,14 @@ $id = $_REQUEST['id'];
         'SELECT * FROM usuarios WHERE id = :id',$params)->queryAll();
         $tams=sizeof($consll);
         $cons=0;
-   
-
+        $nom = "usuarios";
+        $rol = "usuarios";
         while ($cons < $tams) 
         {        
         $id = $consll[$cons]['id'];
-        $nombre_usuario=$consll[$cons]['nombre_usuario'];
+        $nombre=$consll[$cons]['nombre'];
+        $nombre_tabla=$nom;
+        $rol=$rol;
         $a_paterno=$consll[$cons]['a_paterno'];
         $a_materno=$consll[$cons]['a_materno'];
         $celular=$consll[$cons]['celular'];
@@ -54,14 +56,80 @@ $id = $_REQUEST['id'];
         
 ?>
 
+<script type = "text/javascript">
+
+function mensaje(){
+        
+  
+        var email = document.getElementById("email").value;
+        var userid = document.getElementById("userid").value;
+        var rol = document.getElementById("rol").value;
+        var nombre_tabla = document.getElementById("nombre_tabla").value;
+        var password = document.getElementById("password").value;        
+
+            var parametros = {
+                    "email" : email,
+                    "userid" : userid,
+                    "rol": rol,
+                    "nombre_tabla" : nombre_tabla,
+                    "password" : password
+                };
+
+                $.ajax({
+                        data:  parametros,
+                        url:   '<?php echo \Yii::$app->getUrlManager()->createUrl('site/extra') ?>',
+                        type:  'post',
+                        beforeSend: function () {
+                        },
+                        success:  function (response) {
+                if (response){                                        
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Datos registrados exitósamente, Panel de control se pondrá en contacto contigo',
+                        showClass: {
+                            popup: 'animated fadeInDown faster'
+                        },
+                        hideClass: {
+                            popup: 'animated fadeOutUp faster'
+                        }
+                        })
+                        document.getElementById("email").value = "";
+                        document.getElementById("rol").value = "";
+                        document.getElementById("nombre_tabla").value = "";
+                        document.getElementById("password").value = "";
+                        document.getElementById("userid").value = "";
+                }        
+                else{                                    
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ha ocurrido un error con el servidor',
+                        showClass: {
+                            popup: 'animated fadeInDown faster'
+                        },
+                        hideClass: {
+                            popup: 'animated fadeOutUp faster'
+                        }
+                        })
+                        return false;
+                }
+                
+                        }//Cierre respuesta de procesa miento de datos
+                });//Cierre funcion ajax
+
+}
+
+</script>
+
 <div class="cuadro">        
-            <form method="post" action="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Factualizarusuario">
+            
             <div class="inputs">                
                     <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
-                    <input type="hidden" name="id" value="<?php echo $id;?>">
+                    <input type="hidden" name="id" id="userid" value="<?php echo $id;?>">
+                    <input type="hidden" name="rol" id="rol" value="<?php echo $rol;?>">
+                    <input type="hidden" name="nombre_tabla" id="nombre_tabla" value="<?php echo $nombre_tabla;?>">
                     <div class="datos1">
                         <p>NOMBRE</p>
-                        <input type="text" class="form-control" name="nombre_usuario" autofocus="" placeholder="Nombre" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $nombre_usuario;?>">
+                        <input type="text" class="form-control" name="nombre" id="nombre" autofocus="" placeholder="Nombre" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $nombre;?>">
                     </div>
                     <div class="datos1">
                         <p>APELLIDO PATERNO</p>
@@ -79,11 +147,11 @@ $id = $_REQUEST['id'];
                     </div>
                     <div class="datos2">
                         <p>CORREO ELECTRÓNICO</p>
-                        <input type="text" class="form-control" name="email" autofocus="" placeholder="Correo" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $email;?>">
+                        <input type="text" class="form-control" name="email" id="email" autofocus="" placeholder="Correo" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $email;?>">
                     </div>
                     <div class="datos2">
                         <p>CONTRASEÑA</p>
-                        <input type="password" class="form-control" name="contra" autofocus="" placeholder="Contraseña" aria-required="true" aria-invalid="true" required="true" autocomplete="false" >
+                        <input type="password" class="form-control" name="password" id="password" autofocus="" placeholder="Contraseña" aria-required="true" aria-invalid="true" required="true" autocomplete="false" >
                     </div>
                     <br><br><br>     
 
@@ -116,10 +184,10 @@ $id = $_REQUEST['id'];
                     <br><br><br>
                                 
                     <div class="boton">
-                        <button type="submit"  class='btn btn-success ' name='sendForm'>ACTUALIZAR</button><br>
+                        <button type="button" onClick="mensaje()" class='btn btn-success ' name='sendForm'>REGISTRATE</button><br>
                     </div>
             </div>
-        </form>
+        
                 
 </div>
 

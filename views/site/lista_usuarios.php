@@ -45,7 +45,7 @@ if (Yii::$app->user->isGuest) {
     foreach ($usuarios as $usuario):?>
 	  	<tr>
         <th><?= Html::encode("{$usuario->id}") ?></th>
-        <th><?= Html::encode("{$usuario->nombre_usuario}") ?></th>
+        <th><?= Html::encode("{$usuario->nombre}") ?></th>
         <th><?= Html::encode("{$usuario->a_paterno}") ?></th>
         <th><?= Html::encode("{$usuario->a_materno}") ?></th>
         <th><?= Html::encode("{$usuario->celular}") ?></th>

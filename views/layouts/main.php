@@ -47,8 +47,8 @@ AppAsset::register($this);
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </div> 
-            <a href="#" id="repartir">QUIERO REPARTIR</a>         
-            <a href="#" id="vender"> QUIERO VENDER</a>             
+            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Flogin" id="repartir">QUIERO REPARTIR</a>         
+            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginnegocios" id="vender"> QUIERO VENDER</a>             
 
         </div> 
 
@@ -56,22 +56,21 @@ AppAsset::register($this);
 
     <!--Etiqueta nav sirve para navegación-->
     <nav>        
-        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Flogin">INICIO</a>
+        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php">INICIO</a>
         <a href="#">¿QUÉ ES?</a>
         <a href="#">¿CÓMO FUNCIONA?</a>
         <a href="#">PREGUNTAS FRECUENTES</a>        
-        <a href="#">RECOMENDACIONES</a>
-        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginnegocios">LOGIN NEGOCIOS</a>
-        <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginusuarios">LOGIN USUARIOS</a>
+        <a href="#">RECOMENDACIONES</a>        
         <?php echo Yii::$app->user->isGuest ? (
-            "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flogin'>LOGIN DE REPARTO</a>"
+            "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Floginusuarios'>LOGIN DE USUARIO</a>"
             ) : (
                 '<form action="'. Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flogout" method="post">
-                    <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
+                    <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">                    
                     <button id="close_session">SALIR</button>
-                </form>'
+                </form>'.
+                '<a href="'.Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flistageneral">LISTA</a>'
             )
-        ?>             
+        ?>
     </nav>
 
 </header>

@@ -46,7 +46,7 @@ if (Yii::$app->user->isGuest) {
     foreach ($negocios as $negocio):?>
 	  	<tr>
         <th><?= Html::encode("{$negocio->id}") ?></th>
-        <th><?= Html::encode("{$negocio->nombre_comercio}") ?></th>
+        <th><?= Html::encode("{$negocio->nombre}") ?></th>
         <th><?= Html::encode("{$negocio->nombre_titular}") ?></th>
         <th><?= Html::encode("{$negocio->email}") ?></th>
         <th><?= Html::encode("{$negocio->direccion}") ?></th>

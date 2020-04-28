@@ -1,13 +1,18 @@
 <?php
 
 namespace app\models;
+use Yii;
+use yii\db\ActiveRecord;
+use app\models\Users;
 
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     
     public $id;
-    public $username;
     public $email;
+    public $userid;
+    public $rol;
+    public $nombre_tabla;    
     public $password;
     public $authKey;
     public $accessToken;
@@ -58,17 +63,30 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      * @param  string      $username
      * @return static|null
      */
+
+
+
+/**
+     * @param $email
+     * @return array|null|\yii\db\self
+     */
+    public static function findUserByEmail($email)
+    {
+        return self::find()->where(['correo' => $email])->one();
+    }
+
+
     
     /* Busca la identidad del usuario a través del username */
     public static function findByUsername($username)
     {
         $users = Users::find()
-                ->where("activate=:activate", ["activate" => 1])
-                ->andWhere("username=:username", [":username" => $username])
+                ->where("activate=:activate", [":activate" => 1])
+                ->andWhere("email=:email", [":email" => $username])
                 ->all();
         
         foreach ($users as $user) {
-            if (strcasecmp($user->username, $username) === 0) {
+            if (strcasecmp($user->email, $username) === 0) {
                 return new static($user);
             }
         }
@@ -115,7 +133,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         /* Valida el password */
-        if (crypt($password, $this->password) === $this->password)
+        if (crypt($password, $this->password) == $this->password)
         {
         return $password === $password;
         }

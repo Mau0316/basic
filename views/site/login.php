@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Entrar';
+$this->title = 'Registro Unidades de Reparto';
 
 
 ?>
@@ -103,7 +103,7 @@ function valid2() {
                     <br>
 
                         <div class="inputs">
-                                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'Placeholder'=>'Usuario'])->label("")?>
+                                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'Placeholder'=>'Correo electrónico'])->label("")?>
                                 <?= $form->field($model, 'password')->passwordInput(['Placeholder'=>'Contraseña']) ->label("") ?>
                                 <input type="checkbox" name="acepto_chk" id="acepto_chk2"  /><p><b>CONFIRMO QUE HE LEÍDO, Y QUE ENTIENDO Y ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PRESENTE AVISO DE PRIVACIDAD</b></p>
                         </div>

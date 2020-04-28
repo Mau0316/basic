@@ -19,7 +19,7 @@ function mensaje(){
         
     if (document.getElementById("acepto_chk").checked==true)
     {
-        var nombre_usuario = document.getElementById("nombre_usuario").value;
+        var nombre = document.getElementById("nombre").value;
         var a_paterno = document.getElementById("a_paterno").value;
         var a_materno = document.getElementById("a_materno").value;
         var celular = document.getElementById("celular").value;
@@ -32,7 +32,7 @@ function mensaje(){
         var ref_domicilio = document.getElementById("ref_domicilio").value;
 
             var parametros = {
-                    "nombre_usuario" : nombre_usuario,
+                    "nombre" : nombre,
                     "a_paterno" : a_paterno,
                     "a_materno": a_materno,
                     "celular" : celular,
@@ -63,7 +63,7 @@ function mensaje(){
                             popup: 'animated fadeOutUp faster'
                         }
                         })
-                        document.getElementById("nombre_usuario").value = "";
+                        document.getElementById("nombre").value = "";
                         document.getElementById("a_paterno").value = "";
                         document.getElementById("a_materno").value = "";
                         document.getElementById("celular").value = "";
@@ -115,7 +115,7 @@ function mensaje(){
                     <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
                     <div class="datos1">
                         <p>NOMBRE</p>
-                        <input type="text" class="form-control" id="nombre_usuario" autofocus="" placeholder="Nombre" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $user;?>">
+                        <input type="text" class="form-control" id="nombre" autofocus="" placeholder="Nombre" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $user;?>">
                     </div>
                     <div class="datos1">
                         <p>APELLIDO PATERNO</p>

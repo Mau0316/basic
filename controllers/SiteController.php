@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\FormRegister;
 use app\models\Users;
+use yii\models\User;
 use yii\widgets\ActiveForm;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -33,52 +34,6 @@ class SiteController extends Controller
         }
         return $key;
     }
-  
- public function actionConfirm()
- {
-    $table = new Users;
-    if (Yii::$app->request->get())
-    {
-   
-        //Obtenemos el valor de los parámetros get
-        $id = Html::encode($_GET["id"]);
-        $authKey = $_GET["authKey"];
-    
-        if ((int) $id)
-        {
-            //Realizamos la consulta para obtener el registro
-            $model = $table
-            ->find()
-            ->where("id=:id", [":id" => $id])
-            ->andWhere("authKey=:authKey", [":authKey" => $authKey]);
- 
-            //Si el registro existe
-            if ($model->count() == 1)
-            {
-                $activar = Users::findOne($id);
-                $activar->activate = 1;
-                if ($activar->update())
-                {
-                    echo "Enhorabuena registro llevado a cabo correctamente, redireccionando ...";
-                    echo "<meta http-equiv='refresh' content='8; ".Url::toRoute("site/login")."'>";
-                }
-                else
-                {
-                    echo "Ha ocurrido un error al realizar el registro, redireccionando ...";
-                    echo "<meta http-equiv='refresh' content='8; ".Url::toRoute("site/login")."'>";
-                }
-             }
-            else //Si no existe redireccionamos a login
-            {
-                return $this->redirect(["site/login"]);
-            }
-        }
-        else //Si id no es un número entero redireccionamos a login
-        {
-            return $this->redirect(["site/login"]);
-        }
-    }
- }
  
  public function actionRegister()
  {
@@ -209,6 +164,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionProveedor()
+    {
+        return $this->render('proveedor');
+    }
+
     /**
      * Login action.
      *
@@ -219,6 +179,9 @@ class SiteController extends Controller
         
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
+            /*Yii::$app->controller->redirect(['lista']);*/
+            /*return $this->redirect(["site/lista"]);*/
+
         }
 
         $model = new LoginForm();
@@ -234,12 +197,42 @@ class SiteController extends Controller
 
     public function actionLoginnegocios()
     {
-        return $this->render('login_negocio');
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+            /*Yii::$app->controller->redirect(['lista']);*/
+            /*return $this->redirect(["site/lista"]);*/
+
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     public function actionLoginusuarios()
     {
-        return $this -> render('login_usuarios');
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+            /*Yii::$app->controller->redirect(['lista']);*/
+            /*return $this->redirect(["site/lista"]);*/
+
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -276,7 +269,8 @@ class SiteController extends Controller
      * Displays about page.
      *
      * @return string
-     */
+     */   
+
     public function actionAbout()
     {
         return $this->render('about');
@@ -290,7 +284,7 @@ class SiteController extends Controller
     }
 
     public function actionNegocios(){
-        $nombre_comercio = $_POST['nombre_comercio'];
+        $nombre = $_POST['nombre'];
         $giro = $_POST['giro'];
         $nombre_titular = $_POST['nombre_titular'];
         $email = $_POST['email'];
@@ -306,7 +300,7 @@ class SiteController extends Controller
         $validacion = $_POST['validacion'];
            
         $res = Yii::$app->db->createCommand()->insert('negocios', [
-            'nombre_comercio' => $nombre_comercio,
+            'nombre' => $nombre,
             'giro' => $giro,
             'nombre_titular' => $nombre_titular,
             'email' => $email,
@@ -339,7 +333,7 @@ class SiteController extends Controller
 
     public function actionUsuarios()
     {
-        $nombre_usuario = $_POST['nombre_usuario'];
+        $nombre = $_POST['nombre'];
         $a_paterno = $_POST['a_paterno'];
         $a_materno = $_POST['a_materno'];
         $celular = $_POST['celular'];
@@ -352,7 +346,7 @@ class SiteController extends Controller
         $ref_domicilio = $_POST['ref_domicilio'];
 
         $res = Yii::$app->db->createCommand()->insert('usuarios', [
-            'nombre_usuario' => $nombre_usuario,
+            'nombre' => $nombre,
             'a_paterno' => $a_paterno,
             'a_materno' => $a_materno,
             'celular' => $celular,
@@ -373,7 +367,37 @@ class SiteController extends Controller
         
     }
 
+    public function actionExtra()
+    {
+        $email = $_POST['email'];
+        $userid = $_POST['userid'];
+        $rol = $_POST['rol'];
+        $nombre_tabla = $_POST['nombre_tabla'];        
+        $password = $_POST['password'];
+        $authKey = $this->randKey("abcdef0123456789", 200);
+        $accessToken = $this->randKey("abcdef0123456789", 200);
+        $activate = 1;
+        
+        $passwordcript = crypt($password, Yii::$app->params["salt"]);
 
+        $res = Yii::$app->db->createCommand()->insert('users', [
+            'email' => $email,
+            'userid' => $userid,
+            'rol' => $rol,
+            'nombre_tabla' => $nombre_tabla,
+            'password' => $passwordcript,
+            'authKey' => $authKey,
+            'accessToken' => $accessToken,
+            'activate' => $activate          
+            ])->execute();
+            if($res){
+                return true;
+            }
+            else{
+                return false;
+            }        
+    }
+    
 
     public function actionRegistrorepartidor($user=null,$correo=null)
     {
@@ -542,130 +566,5 @@ class SiteController extends Controller
         }
 
     }
-
-
-    public function actionActualizar(){
-            $id = $_POST['id'];
-            $nombre = $_POST['nombre'];
-            $paterno = $_POST['paterno'];
-            $materno = $_POST['materno'];
-            $vehiculo = $_POST['vehiculo'];
-            $curp = $_POST['curp'];
-            $tel_concesionario = $_POST['tel_concesionario'];
-            $tel_envios = $_POST['tel_envios'];
-            $direccion = $_POST['direccion'];
-            $localidad = $_POST['localidad'];
-            $num = $_POST['num'];
-            $placas = $_POST['placas'];
-            $marca = $_POST['marca'];
-            $modelo = $_POST['modelo'];
-            $serie = $_POST['serie'];
-            $conductores = $_POST['conductores'];
-            $celular = $_POST['celular'];
-            $horario = $_POST['horario'];
-            $ine = $_POST['ine'];
-            $email = $_POST['email'];
-            $pago = $_POST['pago'];
-            $contra = $_POST['contra'];
-            $authKey = $this->randKey("abcdef0123456789", 200);
-            $accessToken = $this->randKey("abcdef0123456789", 200);
-            $activate = 1;
-            $contra='0';            
-            $contra = crypt($contra, Yii::$app->params["salt"]);
-            $params=[":id"=>$id, ":nombre"=>$nombre, ":paterno"=>$paterno, ":materno"=>$materno,
-                    ":vehiculo"=>$vehiculo, ":curp"=>$curp, ":tel_concesionario"=>$tel_concesionario,
-                    ":tel_envios"=>$tel_envios, ":direccion"=>$direccion, ":localidad"=>$localidad,
-                    ":num"=>$num, ":placas"=>$placas, ":marca"=>$marca, ":modelo"=>$modelo, ":serie"=>$serie,
-                    ":conductores"=>$conductores, ":celular"=>$celular, ":horario"=>$horario, ":ine"=>$ine,
-                    ":email"=>$email, ":pago"=>$pago, ":contra"=>$contra, ":authKey"=>$authKey, ":accessToken"=>$accessToken,
-                    ":activate"=>$activate        
-                ];
-            
-            $sel = Yii::$app->db->createCommand(
-                'UPDATE aspirantes SET nombre=:nombre, paterno=:paterno, materno=:materno, vehiculo=:vehiculo,
-                curp=:curp, tel_concesionario=:tel_concesionario, tel_envios=:tel_envios, direccion=:direccion,
-                localidad=:localidad, num=:num, placas=:placas, marca=:marca, modelo=:modelo, serie=:serie,
-                conductores=:conductores, celular=:celular, horario=:horario, ine=:ine, email=:email,
-                pago=:pago, contra=:contra, authKey=:authKey, accessToken=:accessToken, activate=:activate WHERE id=:id',$params)->execute();
-                return $this->redirect(["site/lista"]);
-                           
-    }
-
-    public function actionActualizarnegocio(){
-        $id = $_POST['id'];
-        $nombre_comercio = $_POST['nombre_comercio'];
-        $giro = $_POST['giro'];
-        $nombre_titular = $_POST['nombre_titular'];
-        $email = $_POST['email'];
-        $celular = $_POST['celular'];
-        $rfc = $_POST['rfc'];
-        $curp = $_POST['curp'];
-        $busqueda = $_POST['busqueda'];
-        $direccion = $_POST['direccion'];
-        $numero = $_POST['numero'];
-        $colonia = $_POST['colonia'];
-        $tarjeta = $_POST['tarjeta'];
-        $factura = $_POST['factura'];
-        $validacion = $_POST['validacion'];        
-        $contra = $_POST['contra'];
-        $authKey = $this->randKey("abcdef0123456789", 200);
-        $accessToken = $this->randKey("abcdef0123456789", 200);
-        $activate = 1;
-        $contra='0';            
-        $contra = crypt($contra, Yii::$app->params["salt"]);
-        $params=[":id"=>$id, ":nombre_comercio"=>$nombre_comercio, ":giro"=>$giro, ":nombre_titular"=>$nombre_titular,
-                ":email"=>$email, ":celular"=>$celular, ":rfc"=>$rfc,
-                ":curp"=>$curp, ":busqueda"=>$busqueda, ":direccion"=>$direccion,
-                ":numero"=>$numero, ":colonia"=>$colonia, ":tarjeta"=>$tarjeta, ":factura"=>$factura, ":validacion"=>$validacion,
-                ":contra"=>$contra, ":authKey"=>$authKey, ":accessToken"=>$accessToken,
-                ":activate"=>$activate        
-            ];
-        
-        $sel = Yii::$app->db->createCommand(
-            'UPDATE negocios SET nombre_comercio=:nombre_comercio, giro=:giro, nombre_titular=:nombre_titular, email=:email,
-            celular=:celular, rfc=:rfc, curp=:curp, busqueda=:busqueda,
-            direccion=:direccion, numero=:numero, colonia=:colonia, tarjeta=:tarjeta, factura=:factura, validacion=:validacion,
-            contra=:contra, authKey=:authKey, accessToken=:accessToken, activate=:activate WHERE id=:id',$params)->execute();
-            return $this->redirect(["site/listanegocios"]);
-                       
-        }
-
-
-        public function actionActualizarusuario(){
-            $id = $_POST['id'];
-            $nombre_usuario = $_POST['nombre_usuario'];
-            $a_paterno = $_POST['a_paterno'];
-            $a_materno = $_POST['a_materno'];
-            $celular = $_POST['celular'];
-            $email = $_POST['email'];
-            $direccion = $_POST['direccion'];
-            $numero = $_POST['numero'];
-            $colonia = $_POST['colonia'];
-            $municipio = $_POST['municipio'];
-            $c_postal = $_POST['c_postal'];
-            $ref_domicilio = $_POST['ref_domicilio'];                   
-            $contra = $_POST['contra'];
-            $authKey = $this->randKey("abcdef0123456789", 200);
-            $accessToken = $this->randKey("abcdef0123456789", 200);
-            $activate = 1;
-            $contra='0';            
-            $contra = crypt($contra, Yii::$app->params["salt"]);
-            $params=[":id"=>$id, ":nombre_usuario"=>$nombre_usuario, ":a_paterno"=>$a_paterno, ":a_materno"=>$a_materno,
-                    ":celular"=>$celular, ":email"=>$email, ":direccion"=>$direccion,
-                    ":numero"=>$numero, ":colonia"=>$colonia, ":municipio"=>$municipio,
-                    ":c_postal"=>$c_postal, ":ref_domicilio"=>$ref_domicilio,
-                    ":contra"=>$contra, ":authKey"=>$authKey, ":accessToken"=>$accessToken,
-                    ":activate"=>$activate        
-                ];
-            
-            $sel = Yii::$app->db->createCommand(
-                'UPDATE usuarios SET nombre_usuario=:nombre_usuario, a_paterno=:a_paterno, a_materno=:a_materno, celular=:celular,
-                email=:email, direccion=:direccion, numero=:numero, colonia=:colonia,
-                municipio=:municipio, c_postal=:c_postal, ref_domicilio=:ref_domicilio,
-                contra=:contra, authKey=:authKey, accessToken=:accessToken, activate=:activate WHERE id=:id',$params)->execute();
-                return $this->redirect(["site/listausuarios"]);
-                           
-    }
-
     
 }

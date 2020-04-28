@@ -19,7 +19,7 @@ function mensaje(){
         
     if (document.getElementById("acepto_chk").checked==true)
     {
-        var nombre_comercio = document.getElementById("nombre_comercio").value;
+        var nombre = document.getElementById("nombre").value;
         var giro = document.getElementById("giro").value;
         var nombre_titular = document.getElementById("nombre_titular").value;
         var email = document.getElementById("email").value;
@@ -35,7 +35,7 @@ function mensaje(){
         var validacion = document.getElementById("validacion").value;        
 
             var parametros = {
-                    "nombre_comercio" : nombre_comercio,
+                    "nombre" : nombre,
                     "giro" : giro,
                     "nombre_titular": nombre_titular,
                     "busqueda" : busqueda,
@@ -69,7 +69,7 @@ function mensaje(){
                             popup: 'animated fadeOutUp faster'
                         }
                         })
-                        document.getElementById("nombre_comercio").value = "";
+                        document.getElementById("nombre").value = "";
                         document.getElementById("giro").value = "";
                         document.getElementById("nombre_titular").value = "";
                         document.getElementById("email").value = "";
@@ -124,7 +124,7 @@ function mensaje(){
                     <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
                     <div class="datos1">
                         <p>NOMBRE COMERCIAL</p>
-                        <input type="text" class="form-control" id="nombre_comercio" autofocus="" placeholder="Nombre del comercio o empresa" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $user;?>">
+                        <input type="text" class="form-control" id="nombre" autofocus="" placeholder="Nombre del comercio o empresa" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $user;?>">
                     </div>
                     <div class="datos1">
                         <p>GIRO</p>
