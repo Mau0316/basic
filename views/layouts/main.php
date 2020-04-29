@@ -86,14 +86,11 @@ AppAsset::register($this);
             if($rol == 'negocios')
             {                
                 echo '<a href="'.Yii::$app->request->baseUrl.'/index.php?r=site%2Flistanegocios">LISTA DE NEGOCIOS</a>';
+                echo '<a href="'.Yii::$app->request->baseUrl.'/index.php?r=site%2Fregistroproductos">REGISTRAR PRODUCTOS</a>';
             }
         }
         ?>
-
-
-
-              
-
+            
 
         <!-- Repartidor:  Salir y lista y su propia vista-->
 
