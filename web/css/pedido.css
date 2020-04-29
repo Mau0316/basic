@@ -1,0 +1,174 @@
+body{
+    background: #e6e6e6;
+    
+}
+
+/*imgagen*/
+.imagen{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.imagen img{
+    width: 250px;
+    height: 250px;
+}
+
+
+
+/*Divs*/
+
+.padre {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+}
+
+.info{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 20px;
+    width: 60%;
+    height: auto;    
+    margin: 0 2%;
+    padding: 1% 2%;
+}
+
+.titulo{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    width: 50%;
+}
+
+.dato{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    font-weight: bold;
+}
+
+.menu{
+    margin: 2% 2%;
+}
+
+
+
+
+
+.cuadro{
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 10%;
+    width: 80%;
+    margin-bottom: 5%;
+}
+
+.inputs{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    margin: 20px 20px 20px 20px;
+    width: 100%;
+}
+
+.inputs p{
+    font-weight: 900;
+}
+
+.datos1{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; 
+    margin: 0 1%;
+    width: 30%;
+}
+.datos2{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; 
+    margin: 0 1%;
+    width: 30%;
+}
+.datos3{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; 
+    margin: 0 1%;
+    width: 95%;    
+}
+
+.datos4{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; 
+    margin: 0 1%;
+    width: 95%;    
+}
+
+.metodo{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;     
+}
+
+.metodo button{
+    background: #083141!important;
+    color: white!important;
+    border-color: transparent!important;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle; 
+}
+
+.checks {
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 4%;
+}
+
+.confirmar{    
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    margin: 0 1%;
+    width: 95%;
+}
+
+.confirmar button{
+    background: #76b227!important;
+    color: white!important;
+    border-color: transparent!important;       
+}
+
+
+
+.line{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 1% 1%;
+    width: 95%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*Titulos parrafos*/
+h1.title{
+    font-weight: 900;
+    text-align: center;    
+}

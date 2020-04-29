@@ -122,10 +122,10 @@ nav form{
 
 #vender{
     border-radius: 10px;
-    background-color: #76b227;
-    color: #ffffff;
-    
-    height: 30px;
+    background-color: #e25051;
+    color: #ffffff;    
+    font-weight: 900;    
+    padding: 5px 5px;
     text-align: center;
     display: inline-block;
 }
@@ -134,9 +134,19 @@ nav form{
     display: inline-block;
     border-radius: 10px;
     background-color: #009daf;
+    color: white;
+    font-weight: 900;
+    padding: 5px 5px;
+    text-align: center;
+}
+
+#comprar{
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #76b227;
     color: #ffffff;
-    
-    height: 30px;
+    font-weight: 900;
+    padding: 5px 5px;
     text-align: center;
 }
 

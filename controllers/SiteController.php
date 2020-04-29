@@ -169,6 +169,21 @@ class SiteController extends Controller
         return $this->render('proveedor');
     }
 
+    public function actionPedidos()
+    {
+        return $this ->render('pedidos');
+    }
+
+    public function actionCategoriaalimentos()
+    {
+        return $this ->render('categoria_alimentos');
+    }
+
+    public function actionRegistroproductos()
+    {
+        return $this->render('registro_productos');
+    }
+
     /**
      * Login action.
      *
@@ -210,7 +225,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
+        return $this->render('login_negocio', [
             'model' => $model,
         ]);
     }
@@ -230,7 +245,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
+        return $this->render('login_usuarios', [
             'model' => $model,
         ]);
     }

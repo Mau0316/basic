@@ -19,7 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/escudo-01.svg" type="image/png">
+    <link rel="icon" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/operativo.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/style.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?php $this->registerCsrfMetaTags() ?>
@@ -47,9 +47,10 @@ AppAsset::register($this);
                 <button class="btn btn-primary" type="submit" id="buscar">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
-            </div> 
-            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Flogin" id="repartir">QUIERO REPARTIR</a>         
-            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginnegocios" id="vender"> QUIERO VENDER</a>             
+            </div>            
+            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginusuarios" id="comprar">QUIERO COMPRAR</a>
+            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginnegocios" id="vender">QUIERO VENDER</a>
+            <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Flogin" id="repartir"> QUIERO REPARTIR</a>             
 
         </div> 
 
@@ -61,17 +62,38 @@ AppAsset::register($this);
         <a href="#">¿QUÉ ES?</a>
         <a href="#">¿CÓMO FUNCIONA?</a>
         <a href="#">PREGUNTAS FRECUENTES</a>        
-        <a href="#">RECOMENDACIONES</a>        
-        <?php echo Yii::$app->user->isGuest ? (
-            "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Floginusuarios'>LOGIN DE USUARIO</a>"
-            ) : (
-                '<form action="'. Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flogout" method="post">
-                    <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">                    
-                    <button id="close_session">SALIR</button>
-                </form>'.
-                '<a href="'.Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flistageneral">LISTA</a>'
-            )
+        <a href="#">RECOMENDACIONES</a>
+        <?php
+        Yii::$app->user->isGuest ? ($uno='1') : ($rol=Yii::$app->user->identity->rol);
+                 
+        if (isset($rol)) 
+        {       
+            echo     
+            '<form action="'. Yii::$app->getUrlManager()->getBaseUrl().'/index.php?r=site%2Flogout" method="post">
+                <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">                    
+                <button id="close_session">SALIR</button>
+            </form>';
+            if ($rol == 'aspirantes') 
+            {
+                echo '<a href="'.Yii::$app->request->baseUrl.'/index.php?r=site%2Flista">LISTA DE ASPIRANTES</a>';
+                echo '<a href="#">PEDIDOS POR ENTREGAR</a>';
+            }
+            if($rol == 'usuarios')
+            {
+                echo '<a href="'.Yii::$app->request->baseUrl.'/index.php?r=site%2Flistausuarios">LISTA DE USUARIOS</a>';
+                echo '<a href="#">PEDIDOS REALIZADOS</a>';
+            }
+            if($rol == 'negocios')
+            {                
+                echo '<a href="'.Yii::$app->request->baseUrl.'/index.php?r=site%2Flistanegocios">LISTA DE NEGOCIOS</a>';
+            }
+        }
         ?>
+
+
+
+              
+
 
         <!-- Repartidor:  Salir y lista y su propia vista-->
 
