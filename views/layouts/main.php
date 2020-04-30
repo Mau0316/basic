@@ -41,13 +41,14 @@ AppAsset::register($this);
         </div>
              
         <div class="opciones">
-
+            <!--
             <div class="input-group-btn">            
-            <input type="text" placeholder="Buscar">
-                <button class="btn btn-primary" type="submit" id="buscar">
+                <input type="text" placeholder="Buscar">
+                <button class="btn btn-primary" type="submit" id="a">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </div>            
+            -->
             <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginusuarios" id="comprar">QUIERO COMPRAR</a>
             <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Floginnegocios" id="vender">QUIERO VENDER</a>
             <a href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Flogin" id="repartir"> QUIERO REPARTIR</a>             
@@ -80,8 +81,8 @@ AppAsset::register($this);
             }
             if($rol == 'usuarios')
             {
-                echo '<a href="'.Yii::$app->request->baseUrl.'/index.php?r=site%2Flistausuarios">LISTA DE USUARIOS</a>';
                 echo '<a href="#">PEDIDOS REALIZADOS</a>';
+                echo '<a href="'.Yii::$app->request->baseUrl.'/index.php?r=site%2Fbusquedaempresa">LEVANTAR PEDIDO</a>';
             }
             if($rol == 'negocios')
             {                
@@ -129,15 +130,15 @@ AppAsset::register($this);
 
             <div class="redes">
                 <p class="informacion">Síguenos</p>
-                <p class="lineas">- - - - - - - - - - - - - - - - - - - - - - - - -</p>
+                <p class="lineas">______________________________________</p>
                 
-                <a href="http://facebook.com" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/facebook.svg" alt="" width="25px"></a>
+                <a href="http://facebook.com" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/facebook.svg" alt="" width="30px"></a>
                 <br><br>
-                <a href="https://api.whatsapp.com/send?phone=+527713430047" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/whatsapp.svg" alt="" width="25px"></a>
+                <a href="https://api.whatsapp.com/send?phone=+527713430047" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/whatsapp.svg" alt="" width="30px"></a>
                 <br><br>
-                <a href="https://twitter.com/gobiernohidalgo" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/twitter.svg" alt="" width="25px"></a>
+                <a href="https://twitter.com/gobiernohidalgo" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/twitter.svg" alt="" width="30px"></a>
                 <br><br>
-                <a href="https://www.instagram.com/omarfayadmeneses/?hl=es-la" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/instagram.svg" alt="" width="25px"></a>
+                <a href="https://www.instagram.com/omarfayadmeneses/?hl=es-la" target="blank"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/instagram.svg" alt="" width="30px"></a>
                 
             </div>
         
@@ -147,7 +148,7 @@ AppAsset::register($this);
                 
             <div class="contacto">
                 <p class="informacion">Contacto</p>
-                <p class="lineas">- - - - - - - - - - - - - - - - - - - - - - - - -</p>
+                <p class="lineas">______________________________________</p>
                 <p class="contacto">Plaza Juárez s/n Col. Centro</p> <br>
                 <p class="contacto">Pachuca de Soto, Hidalgo, <br> México </p> <br>
                 <a href="tel:+527717176000">(771) 71 76000</a> <br>
@@ -156,9 +157,7 @@ AppAsset::register($this);
                 <a href="#">Aviso de privacidad</a> <br>
             </div>
 
-            <div class="messenger">
-                <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/messenger.svg" alt="">
-            </div>
+          
         
     </div>
     

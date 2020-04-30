@@ -85,7 +85,7 @@ function mensaje(){
                 if (response){                                        
                     Swal.fire({
                         icon: 'success',
-                        title: 'Datos registrados exitósamente, Panel de control se pondrá en contacto contigo',
+                        title: 'Datos actualizads correctamente',
                         showClass: {
                             popup: 'animated fadeInDown faster'
                         },

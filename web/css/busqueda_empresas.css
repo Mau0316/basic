@@ -1,0 +1,113 @@
+/*Drop*/
+body{
+    background: white;
+} 
+
+.dropdown {
+    background: #f5f5f5;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;   
+    margin: 2% 0;
+  }
+
+  .dropdown-content{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;   
+    width: 15%;
+    margin: 2% 2%;
+  }
+
+  .buscar{
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      width: 25%;
+  }
+
+  .pedidos{
+    background-color: white;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    height: auto; 
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pedidos img{
+    width: 300px;
+    height: 300px;
+    margin: 10px -5px 20px -5px;
+}
+
+.producto{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+.pedido{
+    display: inline-block;
+    vertical-align: middle;    
+    text-align: center;
+    margin: 0 10px;
+    
+}
+
+.pedido button{
+    font-weight: 900;
+    color: white;
+    background: #240B3B;
+}
+
+
+
+.nombre{
+    display: inline-block;
+    vertical-align: middle;    
+    text-align: center;
+    margin: 0 10px;
+}
+
+.nombre p{
+    font-weight: bold;
+    color: black;
+}
+
+#perfil{
+    border-radius: 10px;
+    background-color: #083141;
+    color: #ffffff;    
+    font-weight: 900;    
+    padding: 5px 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+
+  
+/*iconno*/
+.icon{
+    
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    height: auto;
+    margin-right:2%;
+
+}
+
+.icon img{
+    
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    width: 25px;
+    height: 25px;
+
+}

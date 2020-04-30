@@ -43,19 +43,19 @@
                 $indicador=0;
                 while ($indicador < $tamArticulos) 
                 {
-                if ($indicador== 0) 
-                {
-					echo "<div class='articulo' id='div".$res[$indicador]['nombre']."'>";
-						echo "<input type='hidden' name='ruta[]' value='".$res[$indicador]['ruta']."'>";
-                        echo "<input type='checkbox' name='elegidos[]' id='".$res[$indicador]['ruta']."' value='".$res[$indicador]['ruta']."'>";
-                        echo "<input type='text' class='form-control' aria-required='true' aria-invalid='true' name='nombre[]' value='".$res[$indicador]['nombre']."'>";
-                        echo "<img src=".Yii::$app->request->baseUrl."/".$res[$indicador]['img_ruta']." class='img_articulo'>";
-                        echo "<input type='text' name='tipo_producto[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['tipo_producto']."' class='titulo_articulo'>";
-                        echo "<input type='number' name='precio[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['precio']."' class='titulo_articulo'>";			
-                        echo "<input type='text' name='palabra_busqueda[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['palabra_busqueda']."' class='titulo_articulo'>";																
-						echo "<input type='hidden' name='esupdate[]' value='".$empresaid."' class='titulo_articulo'>";
-                    echo "</div>";
-                }          
+					if ($indicador== 0) 
+					{
+						echo "<div class='articulo' id='div".$res[$indicador]['nombre']."'>";
+							echo "<input type='hidden' name='ruta[]' value='".$res[$indicador]['ruta']."'>";
+							echo "<input type='checkbox' name='elegidos[]' id='".$res[$indicador]['ruta']."' value='".$res[$indicador]['ruta']."'>";
+							echo "<input type='text' class='form-control' aria-required='true' aria-invalid='true' name='nombre[]' value='".$res[$indicador]['nombre']."'>";
+							echo "<img src=".Yii::$app->request->baseUrl."/".$res[$indicador]['img_ruta']." class='img_articulo'>";
+							echo "<input type='text' name='tipo_producto[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['tipo_producto']."' class='titulo_articulo'>";
+							echo "<input type='number' name='precio[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['precio']."' class='titulo_articulo'>";			
+							echo "<input type='text' name='palabra_busqueda[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['palabra_busqueda']."' class='titulo_articulo'>";																
+							echo "<input type='hidden' name='esupdate[]' value='".$empresaid."' class='titulo_articulo'>";
+						echo "</div>";
+					}          
                 else
                 {
                     if ($res[$indicador]['nombre'] != $res[$indicador-1]['nombre']) 

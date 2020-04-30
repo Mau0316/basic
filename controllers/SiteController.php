@@ -16,6 +16,7 @@ use app\models\ContactForm;
 use app\models\Aspirantes;
 use app\models\Negocios;
 use app\models\Usuarios;
+use app\models\Articulos;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -184,6 +185,48 @@ class SiteController extends Controller
         return $this->render('registro_productos');
     }
 
+ 
+    public function actionBusquedaempresa()
+    {
+        return $this->render('busqueda_empresa');
+    }
+    public function actionBusquedaemp()
+    {
+        $buscar=$_POST['buscar'];
+        $palabra=$_POST['palabra'];
+
+        $palabras="%".$palabra."%";
+        $paramst = [':palabras'=>$palabras];
+          $cn = \Yii::$app->db->createCommand(
+                    'SELECT nombre FROM negocios WHERE '.$buscar.' LIKE :palabras',$paramst)->queryAll();
+            
+                    $tamNegocios=count($cn);
+                    $indicador=0;
+                    while ($indicador < $tamNegocios) 
+                    {
+                       
+                        echo "<div class='pedidos'>" .
+                            
+                                "<div class='producto'>". 
+                                    "<div class='imagen'>".
+                                        "<img src='".Yii::$app->getUrlManager()->getBaseUrl()."/img/somos_hidalgo.svg'>" .                    
+                                            "<br>" .
+                                    "</div>".
+                                    "<br>" .
+                                    
+                                    "<div class='nombre'>" .
+                                        "<p>".$cn[$indicador]['nombre']."</p>".
+                                    "</div>" .
+                                    "<div class='pedido'>".                                                                                                                                                                
+                                        "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flistaarticulos' id='perfil'>" .'Ver perfíl'. "</a>" .
+                                    "</div>" .
+                                "</div>" .
+
+                            "</div";
+                        $indicador++;
+                }
+    }
+
     /**
      * Login action.
      *
@@ -313,7 +356,8 @@ class SiteController extends Controller
         $tarjeta = $_POST['tarjeta'];
         $factura = $_POST['factura'];
         $validacion = $_POST['validacion'];
-           
+        
+     
         $res = Yii::$app->db->createCommand()->insert('negocios', [
             'nombre' => $nombre,
             'giro' => $giro,
@@ -328,7 +372,8 @@ class SiteController extends Controller
             'colonia' => $colonia,
             'tarjeta' => $tarjeta,
             'factura' => $factura,
-            'validacion' => $validacion,           
+            'validacion' => $validacion,    
+                     
             ])->execute();
             if($res){
                 return true;
@@ -336,6 +381,7 @@ class SiteController extends Controller
             else{
                 return false;
             }
+                
             
     }
 
@@ -535,13 +581,32 @@ class SiteController extends Controller
         'totalCount' => $query->count(),
         ]);
 
-      $negocios = $query->orderBy('id')
+      $usuarios = $query->orderBy('id')
       ->offset($pagination->offset)
       ->limit($pagination->limit)
       ->all();
 
       return $this->render('lista_usuarios',[
-        'usuarios' => $negocios,
+        'usuarios' => $usuarios,
+        'pagination' => $pagination,
+      ]);
+    }
+
+    public function actionListaarticulos(){
+        $query = articulos::find();
+
+      $pagination = new Pagination([
+        'defaultPageSize' => 10,
+        'totalCount' => $query->count(),
+        ]);
+
+      $articulos = $query->orderBy('id')
+      ->offset($pagination->offset)
+      ->limit($pagination->limit)
+      ->all();
+
+      return $this->render('articulos',[
+        'articulos' => $articulos,
         'pagination' => $pagination,
       ]);
     }

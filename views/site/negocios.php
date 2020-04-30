@@ -15,6 +15,8 @@ $correo = $_POST['email'];
 
 <script type = "text/javascript">
 
+
+
 function mensaje(){
         
     if (document.getElementById("acepto_chk").checked==true)
@@ -32,7 +34,8 @@ function mensaje(){
         var colonia = document.getElementById("colonia").value;
         var tarjeta = document.getElementById("tarjeta").value;
         var factura = document.getElementById("factura").value;
-        var validacion = document.getElementById("validacion").value;        
+        var validacion = document.getElementById("validacion").value;
+        
 
             var parametros = {
                     "nombre" : nombre,
@@ -48,7 +51,8 @@ function mensaje(){
                     "colonia" : colonia,
                     "tarjeta" : tarjeta,
                     "factura" : factura,
-                    "validacion" : validacion,                    
+                    "validacion" : validacion   
+                                 
                 };
 
                 $.ajax({
@@ -82,7 +86,8 @@ function mensaje(){
                         document.getElementById("colonia").value = "";
                         document.getElementById("tarjeta").value = "";
                         document.getElementById("factura").value = "";
-                        document.getElementById("validacion").value = "";                        
+                        document.getElementById("validacion").value = "";
+                   
                 }        
                 else{                                    
                     Swal.fire({
@@ -129,7 +134,7 @@ function mensaje(){
                     <div class="datos1">
                         <p>GIRO</p>
                         <input type="text" class="form-control" id="giro" autofocus="" placeholder="Tipo de negocio" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
-                    </div>                                    
+                    </div>                                                         
                     <br><br><br>
                    
                     <div class="datos2">
@@ -186,7 +191,8 @@ function mensaje(){
                     </div>
                     <div class="datos5">
                         <p>¿FACTURA? SI/NO</p>
-                        <input type="text" class="form-control" id="factura" autofocus="" placeholder="Palabras Clave de búsqueda" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
+                        <br>
+                        <input type="text" class="form-control" id="factura" autofocus="" placeholder="¿Factura? Si/No" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
                     </div>
                     <br><br><br>
 
@@ -209,12 +215,7 @@ function mensaje(){
                         <button type="button" onClick="mensaje()" class='btn btn-success ' name='sendForm'>REGISTRATE</button><br>
                     </div>
             </div>
-
-            
-
-        
-        
-    
+                    
 </div>
 
 </body>
