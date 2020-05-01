@@ -220,6 +220,11 @@ class SiteController extends Controller
                                     "<div class='pedido'>".                                                                                                                                                                
                                         "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flistaarticulos' id='perfil'>" .'Ver perfíl'. "</a>" .
                                     "</div>" .
+                                    "<form method='post' action='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flistaarticulos'>" .
+                                        "<input type='hidden' name='_csrf' value='".Yii::$app->request->getCsrfToken()."'>" .
+                                        "<input type='hidden' value='".$cn[$indicador]['id']."'>" .
+                                    "</form>" .
+                                    
                                 "</div>" .
 
                             "</div";
@@ -332,6 +337,11 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionEncuesta()
+    {
+        return $this->render('encuesta');
     }
 
     public function actionRegistronegocio($user=null,$correo=null)

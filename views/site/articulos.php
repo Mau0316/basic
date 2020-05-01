@@ -2,6 +2,18 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 $this->title = 'Articulos';
+if(Yii::$app->user->isGuest)
+    {
+        Yii::$app->controller->redirect(['index']);
+	}
+	else{
+		$rol=Yii::$app->user->identity->rol;		
+		if ($rol =! 'usuarios') 
+		{
+			Yii::$app->controller->redirect(['index']);
+		}
+	}
+
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/lista.css">  
@@ -10,7 +22,52 @@ $this->title = 'Articulos';
 if (Yii::$app->user->isGuest) {
     Yii::$app->controller->redirect(['index']);
 }*/
-?><br><br><br>
+    
+      $params=[":id"=>$id];
+      if ($id == null)
+      {
+        Yii::$app->controller->redirect(['lista']);
+      }
+      else{
+
+        $empresaid = [':empresa_id'=>$empresaid];
+      
+
+      $consulta1 = Yii::$app->db->createCommand(
+        'SELECT * FROM negocios WHERE id = :empresa_id',$empresaid)->queryAll();
+        $tams=sizeof($consulta1);
+        $cons=0;       
+        while ($cons < $tams) 
+        {        
+            echo '<div class="articulos">' .
+                '<p>'."Nombre del artículo".'</p>' .
+                '<p>'.$consulta1[$cons]['nombre'].'</p>'.
+                '<p>'."Precio".'</p>' .
+                '<p>'.$consulta1[$cons]['precio'].'</p>'.
+                '<p>'."Precio".'</p>' .
+                '<p>'.$consulta1[$cons]['precio'].'</p>'.
+                '<p>'."Precio".'</p>' .
+                '<p>'.$consulta1[$cons]['precio'].'</p>'.
+                '<p>'."Tipo de producto".'</p>' .
+                '<p>'.$consulta1[$cons]['tipo_producto'].'</p>'.            
+            '</div>';
+        $cons++;
+        }   
+    }             
+        
+?>
+
+
+
+
+
+<br><br><br>
+
+<?php
+$rol=Yii::$app->user->identity->rol;
+echo $rol . ' Hlola';
+?>
+
 
 <h1>Artículos</h1>
 <div id="contenedor1">
@@ -43,7 +100,6 @@ if (Yii::$app->user->isGuest) {
             </table>
 
 </div>
-
 
 
 
