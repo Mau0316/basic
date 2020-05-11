@@ -1,0 +1,63 @@
+body{
+    background: #e6e6e6;
+    
+}
+
+
+/*Divs*/
+.cuadro{
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    margin: 2% 3%;
+    width: 90%;
+}
+
+.inputs{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    margin: 20px 20px 20px 20px;
+    width: 100%
+}
+
+.inputs p{
+    font-weight: 900;
+}
+
+
+.datos1{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; 
+    margin: 0 2%;
+    width: 25%;
+}
+.datos2{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; 
+    margin: 0 2%;
+    width: 25%;
+}
+.datos3{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle; 
+    margin: 0 2%;
+    width: 13%;
+}
+
+
+.boton{
+    text-align: center;
+}
+
+
+
+
+/*Titulos parrafos*/
+h1.title{
+    font-weight: 900;
+    text-align: center;    
+}

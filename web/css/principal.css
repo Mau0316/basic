@@ -10,12 +10,13 @@ body{
     text-align: center;
     width: 100%;
     height: auto;
+    margin: 3% 0;
 }
 
 .pasos img{
     width: 200px;
     height: 200px;
-    margin: 5px 0 5px 0;
+    margin: 0 5px;
 }
 
 .categorias{
@@ -33,8 +34,7 @@ body{
     margin: 10px -5px 20px -5px;
 }
 
-.economia{
-    background-color: #46c1ee;
+.economia{    
     display: inline-block;
     vertical-align: middle;
     text-align: center;
@@ -43,9 +43,8 @@ body{
 }
 
 .economia img{
-    width: 200px;
-    height: 200px;
-    margin: 20px -5px 10px -5px;
+    width: 100%;
+    height: 50%;
 }
 
 .preguntas{
@@ -53,9 +52,9 @@ body{
     display: inline-block;
     text-align: left;
     vertical-align: middle;        
-    width: 100%;
+    width: 96%;
     height: auto;
-    padding-left: 50px;
+    margin: 2% 2%;
 }
 
 .preguntas img{

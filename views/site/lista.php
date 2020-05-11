@@ -26,7 +26,7 @@ if (Yii::$app->user->isGuest) {
 </select>
 <button type="submit" name="buscar" id="buscar">Buscar</button><br>
 </form>
-<h1>Lista de unidadesd de reparto</h1>
+<h1>Lista de unidades de reparto</h1>
 <div id="contenedor1">
 <table id="tabla">
 		<tr>

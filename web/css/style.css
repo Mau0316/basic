@@ -1,22 +1,26 @@
 body{
     background-color: #e6e6e6;
+    
 }
 
 header{
-    background-color: #76b227;
+    background:#875bdb;
     width: 100%;
-    height: auto;    
+    height: auto;
 }
 
 nav{
+    margin: 1% 0;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: middle;    
 }
 
 nav a{
     color: white;
     font-weight: bold;
-    margin: 20px 20px 20px 20px;
+    font-size: 20px;
+    margin: 25px 25px 25px 25px;
+ 
 }
 
 nav form{
@@ -36,6 +40,7 @@ nav form{
     box-shadow: 2px 2px 10px #666;        /* Sombra normal */    
 
 }
+
 #izquierda{
     width: 30%;
     height:auto!important;
@@ -53,6 +58,7 @@ nav form{
     vertical-align: top;
     
 }
+
 .inputs{
     margin: 0px 20px 0px 20px;
 }
@@ -75,7 +81,7 @@ nav form{
 .navegacion{
     display: inline-block;
     vertical-align: middle;
-    background-color: #083141;
+    background: linear-gradient(to right,#00e4d7, #3babe6, #875bdb);
     width: 100%;    
     height: auto;
 }
@@ -87,12 +93,8 @@ nav form{
     height: 100px;
 }
 
-.navegacion input{
-    vertical-align: middle;
-    background-color: #083141;
-    border-radius: 5px;
-    font-size: 15px;
-    display: inline-block;
+.imagenes img{
+    width: 350px;
 }
 
 .imagenes{
@@ -112,8 +114,8 @@ nav form{
 .opciones{          
     z-index: 999;
     display: inline-block;
-    vertical-align: middle;
-    text-align: right;
+    vertical-align: right;
+    text-align: center;
     width: 75%;
     right: 10px;
     height: auto!important;
@@ -133,12 +135,14 @@ nav form{
 #repartir{
     display: inline-block;
     border-radius: 10px;
-    background-color: #009daf;
+    background-color: #00e4d7;
     color: white;
     font-weight: 900;
     padding: 5px 5px;
     text-align: center;
 }
+
+
 
 #comprar{
     display: inline-block;
@@ -169,19 +173,7 @@ nav form{
 
 
 /*Parrafos y titulos*/
-p.domicilio{
-    font-weight: 900;
-    color: white;
-    font-size: 20px;    
-    display: inline-block;    
-}
 
-p.hgo{
-    font-weight: 900;
-    color: #76b227;
-    font-size: 20px;
-    display: inline-block;    
-}
 
 p.a{
     margin-left: 10px;    
@@ -195,7 +187,17 @@ p.informacion{
     font-size: 22px;
 }
 
+p.informacion1{
+    color: white;    
+    font-weight: bold;
+    font-size: 22px;
+}
+
 p.lineas{
+    color: #76b227;    
+}
+
+p.lineas1{
     color: #76b227;    
 }
 
@@ -223,19 +225,14 @@ h1.titulo{
 
 /* Css Footer*/
 .father{  
-    background-color: #083141;
-    width: 100%;
+    background-color: #808080;
+    width: 100%;    
     height: auto;            
     text-align: center;    
     padding: 20px 0 20px 0;    
 }
 
-.hidalgo{       
-    width: 24%;
-    display: inline-block;  
-    vertical-align: middle;
 
-}
 
 .redes{    
     display: inline-block;
@@ -244,19 +241,17 @@ h1.titulo{
     width: 25%;
     height: auto;
     vertical-align: top;
+    margin: 0 5%;
 }
 
-.escudo{
+.adicional{    
     display: inline-block;
-    text-align: left;  
+    text-align: left;
+    font-weight: bold;          
     width: 25%;
-    height: auto;        
-    justify-content: center;  
-    vertical-align: top;  
-}
-
-.escudo img{
-    width: 40%;
+    height: auto;
+    vertical-align: top;
+    margin-right: 400px;
 }
 
 .contacto{
@@ -267,5 +262,234 @@ h1.titulo{
     vertical-align: top;         
 }
 
+.contacto1{
+    display: inline-block;
+    text-align: left;
+    width: 25%;
+    height: auto;       
+    vertical-align: top;         
+}
+
+.contacto2{
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    height: auto;       
+    vertical-align: top;   
+    color: white;    
+    font-weight: bold;
+    font-size: 15px;      
+}
+
+.msg img{
+    margin-left: 1200px;
+    margin-top: 0px;
+}
+
 
 /*--------------------------------*/
+/*busqueda*/
+.busqueda input{
+    background: rgba(0, 0, 0, 0);
+    border-color: #ffffff;
+    width: auto;
+    height: 30px;
+    display: inline-block;
+    border-radius: 10px;
+    color: #ffffff;   
+    margin-top: 10px;
+    margin-left: 300px;
+}
+
+::placeholder{
+    color: #ffffff;
+}
+
+/*responsivo*/
+@media screen and (max-width: 600px) {
+
+    
+    
+    .father{  
+        width: 100%;  
+    }
+    
+    .redes{    
+        width: 1%;
+        margin-left: 0px;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .contacto{
+        text-align: center;    
+        margin-top: 100px;
+        margin-right: 400px;            
+
+
+    }
+
+    .contacto1{    
+        text-align: center;
+        margin-right: 400px;            
+    }
+
+    .msg img{
+        margin-left: 0px;
+        width: 50px;
+    }
+
+    .fb img{
+        margin-top: 60px;
+        width: 35px;
+        margin-left:  15px;
+    }
+
+    .wa img{
+        width: 35px;
+        margin-top: 60px;
+        margin-left:  15px;
+
+    }
+
+    .tw img{
+        width: 35px;
+        margin-top: 60px;
+        margin-left:  15px;
+
+    }
+
+    .ig img{
+        width: 35px;
+        margin-top: 60px;
+        margin-left:  15px;
+
+    }
+
+    p.lineas1{
+        font-size:1px;
+        color: #808080;;
+    }
+
+    .adicionales{
+        margin-left: 90%;
+    }
+
+    p.informacion{
+        margin-left: 20px;
+        margin-top: 60px;
+    }
+
+    p.informacion1{
+        margin-left: 130px;
+        text-align: center;
+    }
+
+    p.lineas{
+        margin-left: 25px;
+        text-align: center;
+    }
+    
+    .contacto2{
+        margin-left:135px;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    /*heather*/
+
+    .navegacion{
+        width: 100%;
+    }
+    
+    #derecha{
+        width: 95%;
+        margin-left: -5px;
+    }
+
+    #izquierda{
+        width: 95%;
+        margin-left: 5px;
+    }
+    
+    .opciones{
+        width: 360px;
+    }
+    
+    nav a{
+        color: white;
+        font-weight: bold;
+        margin: 5px 40px 5px 40px;
+    }
+
+    #comprar{
+        margin: 5px 5px 5px 5px;
+    }
+
+    #vender{
+        margin: 5px 5px 5px 5px;
+    }
+
+    #repartir{
+        margin: 5px 5px 5px 5px; 
+    }
+
+    .busqueda input{
+        
+        height: 30px;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    
+    .navegacion img{
+        margin-left: 5px;
+    }
+    
+}
+
+@media screen and (min-width: 1280px) {
+
+    .navegacion{
+        width: 100%;
+    }
+    
+    .opciones{
+        display: inline-block;
+        vertical-align: middle;
+        right: 10%;
+        width: 750px;
+    }
+    
+    nav a{
+        color: white;
+        font-weight: bold;
+        font-size: 15px;
+        margin: 5px 40px 5px 40px;
+    }
+
+    #comprar{
+        margin: 5px 5px 5px 5px;
+    }
+
+    #vender{
+        margin: 5px 5px 5px 5px;
+    }
+
+    #repartir{
+        margin: 5px 5px 5px 5px; 
+    }
+
+    .busqueda input{
+        
+        height: 30px;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-left: 30px;
+    }
+    
+    .navegacion img{
+        margin-left: 5px;
+    }
+}

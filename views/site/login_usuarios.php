@@ -110,7 +110,7 @@ function valid2() {
                     <div class="boton-login">
                         <div class="form-group">
                             <div class="col-lg-offset-1 col-lg-11">                                
-                                <br><button  class='btn btn-success btn-block' >Actualizar Solicitud</button>
+                                <br><button  class='btn btn-success btn-block' >Entrar</button>
                             </div>
                         </div>
                     </div>

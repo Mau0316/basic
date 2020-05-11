@@ -74,7 +74,46 @@ function mensaje(){
         var userid = document.getElementById("userid").value;
         var rol = document.getElementById("rol").value;
         var nombre_tabla = document.getElementById("nombre_tabla").value;
-        var password = document.getElementById("password").value;        
+        var password = document.getElementById("password").value;
+        var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var contra = /^([a-zA-Z0-9\.\-])+([a-zA-Z0-9])+$/;
+
+        if( email == null || email.length == 0 || /^\s+$/.test(email) ) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa dirección de correo electrónico!'           
+            })
+            return false;
+        }
+
+        else if (!expr.test(email))
+        {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Formato incorrecto de correo electrónico!'            
+            })
+            return false;
+        }
+
+        else if (password == null || password.length == 0 || /^\s+$/.test(password)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa una contraseña!'            
+            })
+            return false;
+        }        
+
+        else if(!contra.test(password)){
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Ingresar letras y números en contraseña!'            
+            })
+            return false;
+        }            
 
             var parametros = {
                     "email" : email,
@@ -101,8 +140,7 @@ function mensaje(){
                         hideClass: {
                             popup: 'animated fadeOutUp faster'
                         }
-                        })
-                        document.getElementById("email").value = "";
+                        })                        
                         document.getElementById("rol").value = "";
                         document.getElementById("nombre_tabla").value = "";
                         document.getElementById("password").value = "";
@@ -239,7 +277,7 @@ function mensaje(){
                     <br><br><br>     
                           
                     <div class="boton">
-                        <button type="button" onClick="mensaje()" class='btn btn-success ' name='sendForm'>REGISTRATE</button><br>
+                        <button type="button" onClick="mensaje()" class='btn btn-success ' name='sendForm'>Actualizar</button><br>
                     </div>
             </div>
         

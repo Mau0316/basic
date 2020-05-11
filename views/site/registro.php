@@ -39,7 +39,244 @@ function mensaje(){
         var horario = document.getElementById("horario").value;
         var ine = document.getElementById("ine").value;
         var pago = document.getElementById("pago").value;
+        expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
+        if( nombre == null || nombre.length == 0 || /^\s+$/.test(nombre) ) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu nombre!'            
+            })
+            return false;
+        }
+
+        else if (paterno == null || paterno.length == 0 || /^\s+$/.test(paterno)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu apellido paterno!'            
+            })
+            return false;
+        }
+
+        else if (materno == null || materno.length == 0 || /^\s+$/.test(materno)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu apellido materno!'            
+            })
+            return false;
+        }
+
+        else if (curp == null || curp.length == 0 || /^\s+$/.test(curp)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu CURP!'            
+            })
+            return false;
+        }
+
+        else if (vehiculo == null || vehiculo.length == 0 || /^\s+$/.test(vehiculo)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu vehiculo!'            
+            })
+            return false;
+        }
+
+        else if (direccion == null || direccion.length == 0 || /^\s+$/.test(direccion)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa direccion!'            
+            })
+            return false;
+        }
+
+        else if (localidad == null || localidad.length == 0 || /^\s+$/.test(localidad)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa localidad!'            
+            })
+            return false;
+        }
+
+        else if (placas == null || placas.length == 0 || /^\s+$/.test(placas)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa las placas de tu vehículo!'
+            })
+            return false;
+        }
+
+        else if (marca == null || marca.length == 0 || /^\s+$/.test(marca)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa la marca de tu vehículo!'            
+            })
+            return false;
+        }
+
+        else if (modelo == null || modelo.length == 0 || /^\s+$/.test(modelo)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa el modelo de tu vehículo!'
+            })
+            return false;
+        }
+
+        else if (conductores == null || conductores.length == 0 || /^\s+$/.test(conductores)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa al menos un conductor!'
+            })
+            return false;
+        }
+
+        else if (horario == null || horario.length == 0 || /^\s+$/.test(horario)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor tu horario!'            
+            })
+            return false;            
+        }
+
+        else if (ine == null || ine.length == 0 || /^\s+$/.test(ine)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu documentación!'            
+            })
+            return false;
+        }
+
+        else if (pago == null || pago.length == 0 || /^\s+$/.test(pago)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu método de cobro!'            
+            })
+            return false;
+        }
+
+        else if (tel_concesionario == null || tel_concesionario.length == 0 || /^\s+$/.test(tel_concesionario)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa el número del concesionario!'            
+            })
+            return false;
+        }
+
+        else if (isNaN(tel_concesionario)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa valores númericos en Teléfono del concesionario!'            
+            })
+            return false;
+        }
+
+        else if (tel_envios == null || tel_envios.length == 0 || /^\s+$/.test(tel_envios)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa el número de atención a envíos!'            
+            })
+            return false;
+        }
+
+        else if (isNaN(tel_envios)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa valores númericos en Teléfono de envíos!'            
+            })
+            return false;
+        }        
+
+        else if (num == null || num.length == 0 || /^\s+$/.test(num)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu número de dirección!'            
+            })
+            return false;
+        }
+
+        else if (isNaN(num)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa valores númericos en Número de dirección!'            
+            })
+            return false;
+        }
+
+        else if (serie == null || serie.length == 0 || /^\s+$/.test(serie)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa el número de serie de tu vehículo!'            
+            })
+            return false;
+        }
+
+        else if (celular == null || celular.length == 0 || /^\s+$/.test(celular)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa el celular de un conductor!'            
+            })
+            return false;
+        }
+
+        else if (isNaN(celular)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa valores númericos en Celular de conductores!'            
+            })
+            return false;
+        }
+
+        else if( !(/^\d{10}$/.test(celular)) ) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa 10 dígitos en Celular de conductores!'            
+            })
+            return false;
+        }
+
+        else if (email == null || email.length == 0 || /^\s+$/.test(email)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa una dirección de correo electrónico!'            
+            })
+            return false;
+        }
+        
+        else if ( !expr.test(email))
+        {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Formato incorrecto de correo electrónico!'            
+            })
+            return false;
+        }
+
+    
             var parametros = {
                     "nombre" : nombre,
                     "paterno" : paterno,
@@ -247,7 +484,7 @@ function mensaje(){
                         <button type="button" onClick="mensaje()" class='btn btn-success ' name='sendForm'>REGISTRATE</button><br>
                     </div>
             </div>
-
+        
         
         
     

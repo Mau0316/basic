@@ -12,7 +12,11 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public $email;
     public $userid;
     public $rol;
-    public $nombre_tabla;    
+    public $nombre;
+    public $a_paterno;
+    public $a_materno;
+    public $celular;
+    public $nombre_tabla;
     public $password;
     public $authKey;
     public $accessToken;

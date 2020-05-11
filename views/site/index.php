@@ -24,23 +24,21 @@ $this->title = 'A Domicilio';
 
         <h1 class="title">CATEGORÍAS</h1>
         <p style="color:#76b227; font-weight:900; text-align:center; font-size:20px">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </p>                    
-        <a title="ALIMENTOS PREPARADOS" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 1"></a>
-        <a title="DESPENSA" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 2"></a>
-        <a title="SALUD" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 3"></a>
-        <a title="SOMOS HIDALGO" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 4"></a>
+        <a title="ALIMENTOS PREPARADOS" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/ALIMENTOS.svg" alt="Alimentos Preparados"></a>
+        <a title="DESPENSA" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/DESPENSA.svg" alt="Despensa"></a>
+        <a title="SALUD" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/SALUD.svg" alt="Salud"></a>
+        <a title="SOMOS HIDALGO" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Somos Hidalgo"></a>
         <br>
-        <a title="NIÑOS" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 5"></a>
-        <a title="MASCOTAS" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 6"></a>
-        <a title="SERVICIOS" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 7"></a>
-        <a title="OTROS" href="http://www.google.com"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Categoría 8"></a>
+        <a title="NIÑOS" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/NINOS.svg" alt="Niños"></a>
+        <a title="MASCOTAS" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/MASCOTAS.svg" alt="Mascotas"></a>
+        <a title="SERVICIOS" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/SERVICIOS.svg" alt="Servicios"></a>
+        <a title="OTROS" href="#"><img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/OTROS.svg" alt="Otros"></a>
         
     </div>
 
     <div class="economia">
 
-        <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/escudo-01.svg" alt="Operativo Escudo" id="operativo">
-        <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/somos_hidalgo.svg" alt="Economía">
-        <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/susana-distancia-01.svg" alt="Revisión sanitaria" id="susana">
+        <img src="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/img/adomicilio-01.jpg" alt="Operativo Escudo" id="operativo">
 
     </div>
 

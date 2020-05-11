@@ -60,12 +60,11 @@ $id = $_REQUEST['id'];
 
 function mensaje(){
         
-  
         var email = document.getElementById("email").value;
         var userid = document.getElementById("userid").value;
         var rol = document.getElementById("rol").value;
         var nombre_tabla = document.getElementById("nombre_tabla").value;
-        var password = document.getElementById("password").value;        
+        var password = document.getElementById("password").value;
 
             var parametros = {
                     "email" : email,

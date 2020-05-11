@@ -52,7 +52,7 @@
 							echo "<img src=".Yii::$app->request->baseUrl."/".$res[$indicador]['img_ruta']." class='img_articulo'>";
 							echo "<input type='text' name='tipo_producto[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['tipo_producto']."' class='titulo_articulo'>";
 							echo "<input type='number' name='precio[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['precio']."' class='titulo_articulo'>";			
-							echo "<input type='text' name='palabra_busqueda[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['palabra_busqueda']."' class='titulo_articulo'>";																
+							echo "<input type='text' name='palabra_busqueda[]' class='form-control' aria-required='true' aria-invalid='true' value='".$res[$indicador]['palabra_busqueda']."' class='titulo_articulo'>";
 							echo "<input type='hidden' name='esupdate[]' value='".$empresaid."' class='titulo_articulo'>";
 						echo "</div>";
 					}          
@@ -92,11 +92,16 @@
 	    txt1=txt1+"<div id='art"+cont+"'></div><br>";
 	    txt1=txt1+"<label for='articulo-"+cont+"'>Sube una foto</label>";
 	    txt1=txt1+"<input type='file' name='img_rutacreate[]' accept='.jpg, .jpeg, .png' class='inputs_art' id='articulo-"+cont+"' onchange='cargarPreview(this.id);' multiple><br>";
-	    txt1=txt1+"<input type='text' name='nombrecreate[]' class='titulo_articulo' placeholder='Nombre del producto'><br><br>";
-	    txt1=txt1+"<p class='txtprecio'>$</p><input type='number' name='preciocreate[]' class='txtprecios' value='000'><br>";
-        txt1=txt1+"<input type='text' name='tipo_productocreate[]' class='titulo_articulo' placeholder='Tipo del producto'><br><br>";
-
-		txt1=txt1+"<input type='text' name='palabra_busquedacreate[]' class='talla_articulo' placeholder='Palabra Busqueda'><br>";	 		 
+		txt1=txt1+"<br>";
+		txt1=txt1+"<b><p>Nombre del producto</p></b>";
+		txt1=txt1+"<input type='text' name='nombrecreate[]' placeholder='Nombre del producto'><br><br>";	    
+	    txt1=txt1+"<b><p>Precio</p></b>";
+		txt1=txt1+"<p class='txtprecio'>$</p><input type='number' name='preciocreate[]' class='txtprecios' value='000'><br>";
+        txt1=txt1+"<b><p>Tipo de producto</p></b>";
+		txt1=txt1+"<input type='text' name='tipo_productocreate[]' placeholder='Tipo del producto'><br><br>";
+		txt1=txt1+"<b><p>Palabra de búsqueda</p></b>";
+		txt1=txt1+"<input type='text' name='palabra_busquedacreate[]' placeholder='Palabra Busqueda'><br>";
+		txt1=txt1+"<br>";
 	    txt1=txt1+'<button class="botones" type="button" onclick="eliminarArticulo(this.id);"  id="div'+cont+'">Eliminar Vacío</button>';
 	    txt1=txt1+"</div>";
 	    $("#articulos").append(txt1);

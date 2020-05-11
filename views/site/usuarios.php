@@ -7,7 +7,8 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Registro de Usuarios';
 $user = $_POST['user'];
 $correo = $_POST['email'];
-
+$nom = "usuarios";
+$rol = "usuarios";
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -16,33 +17,121 @@ $correo = $_POST['email'];
 <script type = "text/javascript">
 
 function mensaje(){
-        
+
     if (document.getElementById("acepto_chk").checked==true)
     {
+        
+        var email = document.getElementById("email").value;        
+        var rol = document.getElementById("rol").value;
+        var nombre_tabla = document.getElementById("nombre_tabla").value;
+        var password = document.getElementById("password").value;
         var nombre = document.getElementById("nombre").value;
         var a_paterno = document.getElementById("a_paterno").value;
         var a_materno = document.getElementById("a_materno").value;
         var celular = document.getElementById("celular").value;
-        var email = document.getElementById("email").value;
-        var direccion = document.getElementById("direccion").value;
-        var numero = document.getElementById("numero").value;
-        var colonia = document.getElementById("colonia").value;
-        var municipio = document.getElementById("municipio").value;
-        var c_postal = document.getElementById("c_postal").value;
-        var ref_domicilio = document.getElementById("ref_domicilio").value;
+        var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var contra = /^([a-zA-Z0-9\.\-])+([a-zA-Z0-9])+$/;
+
+        if( nombre == null || nombre.length == 0 || /^\s+$/.test(nombre) ) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu nombre!'
+            })
+            return false;
+        }
+
+        else if (a_paterno == null || a_paterno.length == 0 || /^\s+$/.test(a_paterno)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu apellido paterno!'            
+            })
+            return false;
+        }
+
+        else if (a_materno == null || a_materno.length == 0 || /^\s+$/.test(a_materno)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu apellido materno!'            
+            })
+            return false;
+        }
+
+        else if (celular == null || celular.length == 0 || /^\s+$/.test(celular)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tu celular!'            
+            })
+            return false;
+        }
+
+        else if (isNaN(celular)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa valores númericos en Celular de conductores!'            
+            })
+            return false;
+        }
+
+        else if( !(/^\d{10}$/.test(celular)) ) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa 10 dígitos en Celular de conductores!'            
+            })
+            return false;
+        }
+
+        else if (password == null || password.length == 0 || /^\s+$/.test(password)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa una contraseña!'            
+            })
+            return false;
+        }   
+
+        else if(!contra.test(password)){
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Ingresar letras y números en contraseña!'            
+            })
+            return false;
+        }
+        
+        else if (email == null || email.length == 0 || /^\s+$/.test(email)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa una dirección de correo electrónico!'            
+            })
+            return false;
+        }
+        
+        else if (!expr.test(email))
+        {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Formato incorrecto de correo electrónico!'            
+            })
+            return false;
+        }
 
             var parametros = {
+                    "email" : email,                    
+                    "rol": rol,
+                    "nombre_tabla" : nombre_tabla,
+                    "password" : password,
                     "nombre" : nombre,
                     "a_paterno" : a_paterno,
-                    "a_materno": a_materno,
-                    "celular" : celular,
-                    "email" : email,
-                    "direccion": direccion,
-                    "numero" : numero,
-                    "colonia" : colonia,
-                    "municipio" : municipio,
-                    "c_postal" : c_postal,
-                    "ref_domicilio" : ref_domicilio          
+                    "a_materno" : a_materno,
+                    "celular" : celular
                 };
 
                 $.ajax({
@@ -55,7 +144,7 @@ function mensaje(){
                 if (response){                                        
                     Swal.fire({
                         icon: 'success',
-                        title: 'Datos registrados exitósamente, Panel de control se pondrá en contacto contigo',
+                        title: 'Datos guardados correctamente',
                         showClass: {
                             popup: 'animated fadeInDown faster'
                         },
@@ -63,17 +152,14 @@ function mensaje(){
                             popup: 'animated fadeOutUp faster'
                         }
                         })
+                        document.getElementById("email").value = "";
+                        document.getElementById("rol").value = "";
+                        document.getElementById("nombre_tabla").value = "";
+                        document.getElementById("password").value = "";
                         document.getElementById("nombre").value = "";
                         document.getElementById("a_paterno").value = "";
                         document.getElementById("a_materno").value = "";
                         document.getElementById("celular").value = "";
-                        document.getElementById("email").value = "";
-                        document.getElementById("direccion").value = "";
-                        document.getElementById("numero").value = "";
-                        document.getElementById("colonia").value = "";
-                        document.getElementById("municipio").value = "";
-                        document.getElementById("c_postal").value = "";
-                        document.getElementById("ref_domicilio").value = "";
                 }        
                 else{                                    
                     Swal.fire({
@@ -91,9 +177,8 @@ function mensaje(){
                 
                         }//Cierre respuesta de procesa miento de datos
                 });//Cierre funcion ajax
-
-        }
-            else{
+    }
+                else{
                 Swal.fire('Debes aceptar términos y condiciones')
                 return false;
             }
@@ -113,6 +198,8 @@ function mensaje(){
 <div class="cuadro">                
             <div class="inputs">                
                     <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
+                    <input type="hidden" name="rol" id="rol" value="<?php echo $rol;?>">
+                    <input type="hidden" name="nombre_tabla" id="nombre_tabla" value="<?php echo $nom;?>">                    
                     <div class="datos1">
                         <p>NOMBRE</p>
                         <input type="text" class="form-control" id="nombre" autofocus="" placeholder="Nombre" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $user;?>">
@@ -124,19 +211,23 @@ function mensaje(){
                     <div class="datos1">
                         <p>APELLIDO MATERNO</p>
                         <input type="text" class="form-control" id="a_materno" autofocus="" placeholder="Apellido materno" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
-                    </div>                                    
-                    <br><br><br>
-                   
+                    </div>                                                                  
+                    <br><br><br>                   
                     <div class="datos2">
                         <p>TELÉFONO CELULAR</p>
                         <input type="text" class="form-control" id="celular" autofocus="" placeholder="Número de teléfono" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
                     </div>
+                    
                     <div class="datos2">
                         <p>CORREO ELECTRÓNICO</p>
                         <input type="text" class="form-control" id="email" autofocus="" placeholder="Correo" aria-required="true" aria-invalid="true" required="true" autocomplete="false" value="<?php echo $email;?>">
                     </div>
+                    <div class="datos2">
+                        <p>CONTRASEÑA</p>
+                        <input type="text" class="form-control" id="password" autofocus="" placeholder="Contraseña" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
+                    </div>
                     <br><br><br>     
-
+<!--
                     <div class="datos3">
                         <p>DIRECCIÓN</p>
                         <input type="text" class="form-control" id="direccion" autofocus="" placeholder="Calle" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
@@ -164,6 +255,7 @@ function mensaje(){
                         <input type="text" class="form-control" id="ref_domicilio" autofocus="" placeholder="(Color de vivienda, seña particular, entre calles, ect.)" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
                     </div>
                     <br><br><br>
+                    -->
 
                     <div class="datos7">                                                
                         <input type="checkbox" name="acepto_chk" id="acepto_chk" value="1" />

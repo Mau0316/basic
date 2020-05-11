@@ -16,6 +16,7 @@ use app\models\ContactForm;
 use app\models\Aspirantes;
 use app\models\Negocios;
 use app\models\Usuarios;
+use app\models\Pedidos;
 use app\models\Articulos;
 use yii\data\Pagination;
 
@@ -172,6 +173,7 @@ class SiteController extends Controller
 
     public function actionPedidos()
     {
+        $cadena= $_POST['cadena'];        
         return $this ->render('pedidos');
     }
 
@@ -185,6 +187,10 @@ class SiteController extends Controller
         return $this->render('registro_productos');
     }
 
+    public function actionCarrito()
+    {
+        return $this->render('carrito');
+    }
  
     public function actionBusquedaempresa()
     {
@@ -198,7 +204,7 @@ class SiteController extends Controller
         $palabras="%".$palabra."%";
         $paramst = [':palabras'=>$palabras];
           $cn = \Yii::$app->db->createCommand(
-                    'SELECT nombre FROM negocios WHERE '.$buscar.' LIKE :palabras',$paramst)->queryAll();
+                    'SELECT id, nombre FROM negocios WHERE '.$buscar.' LIKE :palabras',$paramst)->queryAll();
             
                     $tamNegocios=count($cn);
                     $indicador=0;
@@ -217,19 +223,21 @@ class SiteController extends Controller
                                     "<div class='nombre'>" .
                                         "<p>".$cn[$indicador]['nombre']."</p>".
                                     "</div>" .
-                                    "<div class='pedido'>".                                                                                                                                                                
-                                        "<a href='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flistaarticulos' id='perfil'>" .'Ver perfíl'. "</a>" .
-                                    "</div>" .
+                                    "<div class='pedido'>"     .
                                     "<form method='post' action='".Yii::$app->getUrlManager()->getBaseUrl()."/index.php?r=site%2Flistaarticulos'>" .
                                         "<input type='hidden' name='_csrf' value='".Yii::$app->request->getCsrfToken()."'>" .
-                                        "<input type='hidden' value='".$cn[$indicador]['id']."'>" .
-                                    "</form>" .
+                                        "<input type='hidden' id='empresaid' name='empresaid' value='".$cn[$indicador]['id']."'>" .
+                                        "<button class='btn'>Ver perfil</button>".
+                                    "</form>"    .  
+                                    "</div>" .
+                                   
                                     
                                 "</div>" .
 
                             "</div";
                         $indicador++;
                 }
+                exit();
     }
 
     /**
@@ -294,6 +302,26 @@ class SiteController extends Controller
 
         $model->password = '';
         return $this->render('login_usuarios', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionLogincontrol()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+            /*Yii::$app->controller->redirect(['lista']);*/
+            /*return $this->redirect(["site/lista"]);*/
+
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+        return $this->render('login_control', [
             'model' => $model,
         ]);
     }
@@ -404,37 +432,137 @@ class SiteController extends Controller
 
     public function actionUsuarios()
     {
+        
+        $email = $_POST['email'];        
+        $rol = $_POST['rol'];
+        $nombre_tabla = $_POST['nombre_tabla'];
         $nombre = $_POST['nombre'];
         $a_paterno = $_POST['a_paterno'];
         $a_materno = $_POST['a_materno'];
         $celular = $_POST['celular'];
-        $email = $_POST['email'];
-        $direccion = $_POST['direccion'];
-        $numero = $_POST['numero'];
-        $colonia = $_POST['colonia'];
-        $municipio = $_POST['municipio'];
-        $c_postal = $_POST['c_postal'];
-        $ref_domicilio = $_POST['ref_domicilio'];
+        $password = $_POST['password'];
+        $authKey = $this->randKey("abcdef0123456789", 200);
+        $accessToken = $this->randKey("abcdef0123456789", 200);
+        $activate = 1;
+        
+        $passwordcript = crypt($password, Yii::$app->params["salt"]);
 
-        $res = Yii::$app->db->createCommand()->insert('usuarios', [
+        $res = Yii::$app->db->createCommand()->insert('users', [
+            'email' => $email,            
+            'rol' => $rol,
+            'nombre_tabla' => $nombre_tabla,
             'nombre' => $nombre,
             'a_paterno' => $a_paterno,
             'a_materno' => $a_materno,
             'celular' => $celular,
-            'email' => $email,
-            'direccion' => $direccion,
-            'numero' => $numero,
-            'colonia' => $colonia,
-            'municipio' => $municipio,
-            'c_postal' => $c_postal,
-            'ref_domicilio' => $ref_domicilio,            
+            'password' => $passwordcript,
+            'authKey' => $authKey,
+            'accessToken' => $accessToken,
+            'activate' => $activate          
             ])->execute();
             if($res){
                 return true;
             }
             else{
                 return false;
+            }    
+        
+    }
+
+    public function actionPedido()
+    {
+        $sql = \Yii::$app->db->createCommand(
+            'SELECT * FROM cart_items ORDER BY id DESC LIMIT 1')->queryAll();
+        $cod=$sql[0]['id']+1;
+        $codigo=date("dmy").$cod;
+        
+        $cadena = $_POST['cadena'];
+        $arr = (explode("-",$cadena));
+        
+        $tamArray=count($arr);
+        $contador=0;
+        
+        while ($contador < $tamArray)             
+        {
+            $paramst = [':codigo' => $codigo, ':idarr'=>$arr[$contador]];
+            $arreglo = \Yii::$app->db->createCommand(
+            'UPDATE cart_items SET cadena=:codigo WHERE id=:idarr',$paramst)->execute();
+            $contador++;
+        }
+
+        $nombre = $_POST['nombre'];        
+        $telefono = $_POST['telefono'];
+        $calle = $_POST['calle'];       
+        $num = $_POST['num'];
+        $colonia = $_POST['colonia'];
+        $municipio = $_POST['municipio'];
+        $instrucciones = $_POST['instrucciones'];        
+        $user_id = $_POST['user_id'];
+        $pago = $_POST['pago'];
+        $created = $_POST['created'];
+               
+        $res = Yii::$app->db->createCommand()->insert('pedidos', [
+            'nombre' => $nombre,            
+            'telefono' => $telefono,
+            'calle' => $calle,           
+            'num' => $num,
+            'colonia' => $colonia,
+            'municipio' => $municipio,
+            'instrucciones' => $instrucciones,            
+            'user_id' => $user_id,
+            'pago' => $pago,
+            'created' => $created
+                      
+            ])->execute();
+            if($res){
+                return true;
             }
+            else{
+                return false;
+            }    
+
+
+          
+        
+    }
+
+    public function actionRegistrocontrol($user=null, $correo=null)
+    {
+        $us = $_POST['user'];
+        $correo = $_POST ['email'];
+        return $this->render('control', ['user' => $user,'email' => $correo]);
+    }
+
+    public function actionControl()
+    {
+        
+        $email = $_POST['email'];        
+        $rol = $_POST['rol'];
+        $nombre_tabla = $_POST['nombre_tabla'];
+        $nombre = $_POST['nombre'];        
+        $password = $_POST['password'];
+        $authKey = $this->randKey("abcdef0123456789", 200);
+        $accessToken = $this->randKey("abcdef0123456789", 200);
+        $activate = 1;
+        
+        $passwordcript = crypt($password, Yii::$app->params["salt"]);
+
+        $res = Yii::$app->db->createCommand()->insert('users', [
+            'email' => $email,            
+            'rol' => $rol,
+            'nombre_tabla' => $nombre_tabla,
+            'nombre' => $nombre,         
+            'password' => $passwordcript,
+            'authKey' => $authKey,
+            'accessToken' => $accessToken,
+            'activate' => $activate          
+            ])->execute();
+            if($res){
+                return true;
+            }
+            else{
+                return false;
+            }    
         
     }
 
@@ -460,6 +588,30 @@ class SiteController extends Controller
             'authKey' => $authKey,
             'accessToken' => $accessToken,
             'activate' => $activate          
+            ])->execute();
+            if($res){
+                return true;
+            }
+            else{
+                return false;
+            }        
+    }
+
+    public function actionCarro()
+    {
+        $product_id = $_POST['product_id'];
+        $empresa = $_POST['empresa'];
+        $cantidad = $_POST['cantidad'];
+        $user_id = $_POST['user_id'];  
+        $created = $_POST['created'];        
+                
+
+        $res = Yii::$app->db->createCommand()->insert('cart_items', [
+            'product_id' => $product_id,
+            'empresa_id' => $empresa,
+            'cantidad' => $cantidad,
+            'user_id' => $user_id,        
+            'created' => $created
             ])->execute();
             if($res){
                 return true;
@@ -539,6 +691,10 @@ class SiteController extends Controller
         return $this->render('negocio_individual');
     }
 
+    public function actionRepartir($id=null){
+        return $this->render('repartir');
+    }
+
     public function actionUsuarioindividual($id=null)
     {
         return $this->render('usuario_individual');
@@ -602,26 +758,32 @@ class SiteController extends Controller
       ]);
     }
 
-    public function actionListaarticulos(){
-        $query = articulos::find();
+    public function actionListapedidos(){
+        $query = pedidos::find();
 
       $pagination = new Pagination([
         'defaultPageSize' => 10,
         'totalCount' => $query->count(),
         ]);
 
-      $articulos = $query->orderBy('id')
+      $pedidos = $query->orderBy('id')
       ->offset($pagination->offset)
       ->limit($pagination->limit)
       ->all();
 
-      return $this->render('articulos',[
-        'articulos' => $articulos,
+      return $this->render('lista_pedidos',[
+        'pedidos' => $pedidos,
         'pagination' => $pagination,
       ]);
     }
 
-
+    public function actionListaarticulos(){
+        $empresaid = $_POST['empresaid'];
+        //echo $empresaid;
+        //return $this->render('articulos');
+        
+        return $this->render('articulos', ['empresaid' => $empresaid]);
+    }
 
     public function actionModificar(){
 
@@ -640,6 +802,17 @@ class SiteController extends Controller
             $id= $_POST['id'];
         //$usuario=Yii::$app->user->identity->nombre; //Nombre del usuario logeado    
         Yii::$app->controller->redirect(['negocioindividual', 'id'=> $id]);
+        //$r=Yii::$app->user->identity->rol;                
+        }
+
+    }
+
+    public function actionDetalles(){
+
+        if (isset($_POST['detalles'])) {
+            $id= $_POST['id'];
+        //$usuario=Yii::$app->user->identity->nombre; //Nombre del usuario logeado    
+        Yii::$app->controller->redirect(['repartir', 'id'=> $id]);
         //$r=Yii::$app->user->identity->rol;                
         }
 

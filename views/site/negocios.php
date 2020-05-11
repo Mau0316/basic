@@ -35,7 +35,153 @@ function mensaje(){
         var tarjeta = document.getElementById("tarjeta").value;
         var factura = document.getElementById("factura").value;
         var validacion = document.getElementById("validacion").value;
+        var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         
+        if( nombre == null || nombre.length == 0 || /^\s+$/.test(nombre) ) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa el nombre de tu negocio!'            
+            })
+            return false;
+        }
+        
+
+        else if (giro == null || giro.length == 0 || /^\s+$/.test(giro)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa tipo de negocio!'            
+            })
+            return false;
+        }
+
+        else if (nombre_titular == null || nombre_titular.length == 0 || /^\s+$/.test(nombre_titular)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa el nombre del titular!'            
+            })
+            return false;
+        }
+
+        else if (email == null || email.length == 0 || /^\s+$/.test(email)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa dirección de correo electrónico!'            
+            })
+            return false;
+        }
+
+        else if (!expr.test(email))
+        {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Formato incorrecto de correo electrónico!'            
+            })
+            return false;
+        }
+
+        else if (celular == null || celular.length == 0 || /^\s+$/.test(celular)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa un número de celular para pedidos!'            
+            })
+            return false;
+        }
+
+        else if (isNaN(celular)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa valores númericos en Número de celular!'            
+            })
+            return false;
+        }
+
+        else if (rfc == null || rfc.length == 0 || /^\s+$/.test(rfc)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa un RFC!'            
+            })
+            return false;
+        }
+
+        else if (curp == null || curp.length == 0 || /^\s+$/.test(curp)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa un CURP!'            
+            })
+            return false;
+        }
+
+        else if (busqueda == null || busqueda.length == 0 || /^\s+$/.test(busqueda)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa una palabra de búsqueda!'            
+            })
+            return false;
+        }
+
+        else if (direccion == null || direccion.length == 0 || /^\s+$/.test(direccion)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa la calle!'            
+            })
+            return false;
+        }
+
+        else if (numero == null || numero.length == 0 || /^\s+$/.test(numero)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa un número de dirección!'            
+            })
+            return false;
+        }
+
+        else if (colonia == null || colonia.length == 0 || /^\s+$/.test(colonia)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa una colonia!'            
+            })
+            return false;
+        }
+
+        else if (tarjeta == null || tarjeta.length == 0 || /^\s+$/.test(tarjeta)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa esquema de cobro de tarjeta!'
+            })
+            return false;
+        }
+
+        else if (factura == null || factura.length == 0 || /^\s+$/.test(factura)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresar si cuenta con factura!'            
+            })
+            return false;
+        }
+
+        else if (validacion == null || validacion.length == 0 || /^\s+$/.test(validacion)) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error...',
+            text: 'Por favor ingresa si aceptas una validación de sanidad!'            
+            })
+            return false;
+        }
 
             var parametros = {
                     "nombre" : nombre,
@@ -51,7 +197,7 @@ function mensaje(){
                     "colonia" : colonia,
                     "tarjeta" : tarjeta,
                     "factura" : factura,
-                    "validacion" : validacion   
+                    "validacion" : validacion
                                  
                 };
 
@@ -134,7 +280,13 @@ function mensaje(){
                     <div class="datos1">
                         <p>GIRO</p>
                         <input type="text" class="form-control" id="giro" autofocus="" placeholder="Tipo de negocio" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
-                    </div>                                                         
+                    </div>    
+                    <!--    
+                    <div class="datos1">
+                        <p>IMÁGEN NEGOCIO</p>
+                        <input type="file" class="form-control"  aria-required="true" aria-invalid="true" required="true" autocomplete="false">
+                    </div>                                                 
+                    -->
                     <br><br><br>
                    
                     <div class="datos2">
