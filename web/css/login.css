@@ -1,0 +1,57 @@
+body{
+    display: inline-block;
+    width: 100%;
+    background-color: #AADAE8;   
+}
+
+h1{
+    text-align: center;
+}
+
+/*Divs */
+.padre{
+    text-align: center;    
+}
+.divs{
+    display: inline-block; 
+    box-shadow: 2px 2px 10px #666;        /* Sombra normal */    
+
+}
+
+#izquierda{
+    width: 30%;
+    height:auto!important;
+    border-radius: 5px;
+    margin: 30px 45px 45px 0px;
+    background:  #ffffff;
+    vertical-align: top;
+}
+#derecha{
+    width: 30%;    
+    height:auto!important;
+    border-radius: 5px;
+    margin: 30px 0px 45px 45px;
+    background:  #fff;
+    vertical-align: top;
+    
+}
+
+.inputs{
+    margin: 0px 20px 0px 20px;
+}
+
+
+.inputs1{
+    padding: 0 6%;
+}
+
+.form-group{
+    margin-top: 3%;
+}
+
+.boton-login{
+    margin-right: 35px;
+}
+.form-div{
+    margin-top: 20px;
+}

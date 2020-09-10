@@ -6,10 +6,10 @@ body{
 
 /*Divs*/
 .cuadro{
-    background-color: white;
+    
     border-radius: 10px;
     text-align: center;
-    margin: 2% 3%;
+    margin: 11% 3%;
     width: 90%;
 }
 
@@ -40,13 +40,7 @@ body{
     margin: 0 2%;
     width: 25%;
 }
-.datos3{
-    display: inline-block;
-    text-align: left;
-    vertical-align: middle; 
-    margin: 0 2%;
-    width: 13%;
-}
+
 
 
 .boton{

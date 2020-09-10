@@ -6,38 +6,10 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
 $this->title = 'Registro Mesa de Control';
-
-
 ?>
-<script type = "text/javascript">
-function valid1() {
-    //Validación de campo vacío
-    if (document.getElementById("acepto_chk1").checked==false){
-        alert("Debes aceptar los Términos y Condiciones de Registro");
-        return false;
-    }
-    else{
-        return true;
-    }
-}
 
-function valid2() {
-    var bandera = "0";
-    if (document.getElementById("acepto_chk2").checked==false && bandera == "0"){
-        alert("Debes aceptar los Términos y Condiciones de Login");
-        bandera = "1";
-        return false;
-    }
-    else{
-        return true;
-    }
-}
-
-</script>
-
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/css/login.css">
 
 
 <body>
@@ -52,32 +24,26 @@ function valid2() {
                 <h1 class="negrita">REGISTRO</h1></h1>
                 <br>
                 <br>
-            <form method="post" action="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Fregistrocontrol" onSubmit="return valid1()">
+            <form method="post" action="<?php echo Yii::$app->getUrlManager()->getBaseUrl(); ?>/index.php?r=site%2Fregistrocontrol">
                 <div class="inputs">
                     <input type="hidden" name="_csrf" value="5CGthysOYWQo_zil7F4HeNCq0HdZONZnEMkORcePcRyjfp-_akhXUEaPesGlNnY-tpiTJRsBuQhVmFQCs84pKA==">
                     <input type="text" class="form-control" name="user" autofocus="" placeholder="Nombre de usuario" aria-required="true" aria-invalid="true" required="true" autocomplete="false">
                     <br><br>
                     <input type="text" class="form-control" name="email" autofocus="" placeholder="Correo electrónico" aria-required="true" aria-invalid="true" required="true" autocomplete=" false">
                     <br>
-                    <input type="checkbox" name="acepto_chk" id="acepto_chk1" value="1" />
-                    <p><b>CONFIRMO QUE HE LEÍDO, Y QUE ENTIENDO Y ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PRESENTE AVISO DE PRIVACIDAD</b></p>
                     
                 </div>
                 <div class="boton-login">
                     <div class="form-group">
                         <div class="col-lg-offset-1 col-lg-11">
                             <!-- /*Html::submitButton('Iniciar sesión', ['class' => 'btn btn-success', 'name' => 'login-button']) */ --><br>                    
-                            <button class='btn btn-success btn-block' >Iniciar registro</button><br>
+                            <button class='btn btn-primary btn-block' >Iniciar registro</button><br>
                         </div>
                         <br>
                     </div>
                     <br>
                 </div>
-                <br><br><br>
                 
-                
-                <b><p>Para consultar nuestro aviso de privacidad,<br><a href="#" >Da click aquí</a></p></b>
-                <br>
             </form>        
         </div>
 
@@ -87,7 +53,7 @@ function valid2() {
                 'id' => 'login-form',
                 'layout' => 'horizontal',
                 'options' => [
-                    'onsubmit' => 'return valid2()'
+                    'onsubmit' => ''
                 ],
                 'fieldConfig' => [
                 'template' => "{label}\n<div>{input}</div>\n\n<div>{error}</div>",
@@ -101,24 +67,19 @@ function valid2() {
                 <h1 class="negrita">USUARIO</h1>
                 <br>
 
-                    <div class="inputs">
+                    <div class="inputs1">
                             <?= $form->field($model, 'username')->textInput(['autofocus' => true,'Placeholder'=>'Correo electrónico'])->label("")?>
                             <?= $form->field($model, 'password')->passwordInput(['Placeholder'=>'Contraseña']) ->label("") ?>
-                            <input type="checkbox" name="acepto_chk" id="acepto_chk2"  /><p><b>CONFIRMO QUE HE LEÍDO, Y QUE ENTIENDO Y ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PRESENTE AVISO DE PRIVACIDAD</b></p>
                     </div>
 
                     <div class="boton-login">
                         <div class="form-group">
                             <div class="col-lg-offset-1 col-lg-11">                                
-                                <br><button  class='btn btn-success btn-block' >Entrar</button>
+                                <br><button  class='btn btn-primary btn-block' >Entrar</button>
                             </div>
                         </div>
                     </div>
                     <b>
-                    <p>¿Olvidaste tu contraseña? Contáctanos: <br> <a href="tel:+527717176000"> +52 (771) 71 76000</a></p>
-                    <a href="mailto:email@echoecho.com" target="blank">escudo@hidalgo.gob.mx</a>
-                    <p>Dirección general de Promoción a <br> emprendedores y MIPyMES</p>
-                    </b>
             </div>
             
             <?php ActiveForm::end(); ?>
